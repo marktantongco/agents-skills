@@ -3,338 +3,918 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI Visual Synthesis - Skill Documentation</title>
+    <meta name="description" content="AI Visual Synthesis - Ultra-modern prompt engineering framework for AI-powered visual generation and UI/UX design with brutalist aesthetics">
+    <meta name="keywords" content="ai visual synthesis, prompt engineering, gen-z ui, brutalist design, kinetic typography, 8-layer architecture, micro-interactions, glassmorphism">
+    <meta name="author" content="promptc OS">
+    <meta name="theme-color" content="#0B0D10">
+    
+    <meta property="og:title" content="AI Visual Synthesis - Prompt Engineering Framework">
+    <meta property="og:description" content="Ultra-modern prompt engineering for AI-powered visual generation">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://ai-visual-synthesis.vercel.app">
+    <meta property="og:site_name" content="AI Visual Synthesis">
+    <meta property="og:image" content="https://ai-visual-synthesis.vercel.app/og-image.png">
+    
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="AI Visual Synthesis">
+    <meta name="twitter:description" content="Ultra-modern prompt engineering framework">
+    
+    <title>AI Visual Synthesis — Prompt Engineering Framework</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    
     <style>
-        * {
+        :root {
+            --void-black: #0B0D10;
+            --charcoal: #14161A;
+            --concrete: #1E2026;
+            --steel: #2A2D35;
+            --silver: #A1A1AA;
+            --white: #FFFFFF;
+            --cyan: #00FFFF;
+            --magenta: #FF00FF;
+            --neon-green: #39FF14;
+            --electric-blue: #0066FF;
+            --hot-pink: #FF1493;
+            --warning: #FFB000;
+            
+            --font-display: 'Space Grotesk', sans-serif;
+            --font-mono: 'JetBrains Mono', monospace;
+            
+            --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+            --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        *, *::before, *::after {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            font-family: var(--font-display);
+            background: var(--void-black);
+            color: var(--white);
             line-height: 1.6;
-            color: #333;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            overflow-x: hidden;
             min-height: 100vh;
         }
-
+        
+        /* Brutalist Grid Background */
+        .grid-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+            background-size: 50px 50px;
+            pointer-events: none;
+            z-index: 0;
+        }
+        
+        /* Noise Texture Overlay */
+        .noise {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.05;
+            pointer-events: none;
+            z-index: 1;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+        }
+        
+        /* Main Container */
         .container {
-            max-width: 1200px;
+            position: relative;
+            z-index: 10;
+            max-width: 1400px;
             margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 4rem 0;
+        }
+        
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            background: var(--charcoal);
+            border: 1px solid var(--steel);
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--cyan);
+            margin-bottom: 2rem;
+            animation: fadeInUp 0.8s var(--ease-out-expo) forwards;
+        }
+        
+        .hero-badge::before {
+            content: '';
+            width: 8px;
+            height: 8px;
+            background: var(--cyan);
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(0.8); }
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .hero-title {
+            font-size: clamp(3rem, 10vw, 8rem);
+            font-weight: 700;
+            line-height: 0.9;
+            letter-spacing: -0.03em;
+            margin-bottom: 2rem;
+            animation: fadeInUp 0.8s var(--ease-out-expo) 0.1s forwards;
+            opacity: 0;
+        }
+        
+        .hero-title .gradient {
+            background: linear-gradient(135deg, var(--cyan), var(--magenta));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .hero-title .outline {
+            -webkit-text-stroke: 2px var(--white);
+            color: transparent;
+            opacity: 0.3;
+        }
+        
+        .hero-description {
+            font-size: clamp(1rem, 2vw, 1.5rem);
+            color: var(--silver);
+            max-width: 600px;
+            margin-bottom: 3rem;
+            animation: fadeInUp 0.8s var(--ease-out-expo) 0.2s forwards;
+            opacity: 0;
+        }
+        
+        /* Brutalist CTA Buttons */
+        .cta-group {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            animation: fadeInUp 0.8s var(--ease-out-expo) 0.3s forwards;
+            opacity: 0;
+        }
+        
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 1rem 2rem;
+            font-family: var(--font-mono);
+            font-size: 0.875rem;
+            font-weight: 600;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            transition: all 0.3s var(--ease-out-expo);
+            cursor: pointer;
+            border: none;
+        }
+        
+        .btn-primary {
+            background: var(--white);
+            color: var(--void-black);
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-4px);
+            box-shadow: 
+                8px 8px 0 var(--cyan),
+                -4px -4px 0 var(--magenta);
+        }
+        
+        .btn-secondary {
+            background: transparent;
+            color: var(--white);
+            border: 2px solid var(--white);
+        }
+        
+        .btn-secondary:hover {
+            background: var(--white);
+            color: var(--void-black);
+            transform: translateY(-4px);
+        }
+        
+        /* Section Styles */
+        section {
+            padding: 8rem 0;
+        }
+        
+        .section-header {
+            margin-bottom: 4rem;
+        }
+        
+        .section-label {
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            color: var(--cyan);
+            margin-bottom: 1rem;
+            display: block;
+        }
+        
+        .section-title {
+            font-size: clamp(2rem, 5vw, 4rem);
+            font-weight: 700;
+            line-height: 1.1;
+            letter-spacing: -0.02em;
+        }
+        
+        /* Architecture Section */
+        .architecture-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1px;
+            background: var(--steel);
+            border: 1px solid var(--steel);
+        }
+        
+        .arch-layer {
+            background: var(--charcoal);
             padding: 2rem;
+            transition: all 0.3s var(--ease-out-expo);
+            position: relative;
+            overflow: hidden;
         }
-
-        header {
+        
+        .arch-layer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: var(--cyan);
+            transform: scaleY(0);
+            transition: transform 0.3s var(--ease-out-expo);
+        }
+        
+        .arch-layer:hover {
+            background: var(--concrete);
+        }
+        
+        .arch-layer:hover::before {
+            transform: scaleY(1);
+        }
+        
+        .arch-number {
+            font-family: var(--font-mono);
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--steel);
+            line-height: 1;
+            margin-bottom: 1rem;
+        }
+        
+        .arch-name {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        
+        .arch-desc {
+            font-size: 0.875rem;
+            color: var(--silver);
+        }
+        
+        /* Animal Modes Grid */
+        .modes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+        
+        .mode-card {
+            background: var(--charcoal);
+            border: 1px solid var(--steel);
+            padding: 2rem;
             text-align: center;
-            padding: 3rem 0;
-            color: white;
+            transition: all 0.3s var(--ease-out-expo);
+            cursor: pointer;
         }
-
-        header h1 {
+        
+        .mode-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--cyan);
+            box-shadow: 
+                0 0 30px rgba(0, 255, 255, 0.2),
+                inset 0 0 30px rgba(0, 255, 255, 0.05);
+        }
+        
+        .mode-emoji {
             font-size: 3rem;
             margin-bottom: 1rem;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            display: block;
         }
-
-        header p {
-            font-size: 1.2rem;
-            opacity: 0.9;
-        }
-
-        .content {
-            background: white;
-            border-radius: 12px;
-            padding: 2rem;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
-        }
-
-        h2 {
-            color: #667eea;
-            margin: 2rem 0 1rem;
-            padding-bottom: 0.5rem;
-            border-bottom: 2px solid #eee;
-        }
-
-        h3 {
-            color: #764ba2;
-            margin: 1.5rem 0 0.5rem;
-        }
-
-        code {
-            background: #f4f4f4;
-            padding: 0.2rem 0.4rem;
-            border-radius: 4px;
-            font-family: 'Monaco', 'Menlo', monospace;
-            font-size: 0.9em;
-        }
-
-        pre {
-            background: #2d2d2d;
-            color: #f8f8f2;
-            padding: 1rem;
-            border-radius: 8px;
-            overflow-x: auto;
-            margin: 1rem 0;
-        }
-
-        pre code {
-            background: none;
-            padding: 0;
-            color: inherit;
-        }
-
-        ul, ol {
-            margin: 1rem 0;
-            padding-left: 2rem;
-        }
-
-        li {
-            margin: 0.5rem 0;
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 1rem 0;
-        }
-
-        th, td {
-            padding: 0.75rem;
-            text-align: left;
-            border-bottom: 1px solid #eee;
-        }
-
-        th {
-            background: #f8f9fa;
+        
+        .mode-name {
+            font-family: var(--font-mono);
+            font-size: 0.875rem;
             font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 0.5rem;
         }
-
-        .badge {
-            display: inline-block;
-            padding: 0.25rem 0.75rem;
-            background: #667eea;
-            color: white;
-            border-radius: 20px;
-            font-size: 0.85rem;
-            margin-right: 0.5rem;
+        
+        .mode-desc {
+            font-size: 0.75rem;
+            color: var(--silver);
         }
-
-        .animal-mode {
-            display: inline-block;
-            padding: 0.5rem 1rem;
-            margin: 0.25rem;
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            color: white;
-            border-radius: 8px;
-            font-weight: 600;
-        }
-
-        footer {
-            text-align: center;
-            padding: 2rem;
-            color: white;
-            opacity: 0.8;
-        }
-
-        .quick-links {
-            display: flex;
-            justify-content: center;
+        
+        /* Design Vocabulary */
+        .vocab-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 1rem;
-            margin: 2rem 0;
-            flex-wrap: wrap;
         }
-
-        .quick-links a {
-            padding: 0.75rem 1.5rem;
-            background: white;
-            color: #667eea;
-            text-decoration: none;
-            border-radius: 8px;
+        
+        .vocab-item {
+            background: var(--charcoal);
+            border-left: 4px solid var(--cyan);
+            padding: 1.5rem;
+            transition: all 0.3s var(--ease-out-expo);
+        }
+        
+        .vocab-item:hover {
+            background: var(--concrete);
+            border-left-color: var(--magenta);
+        }
+        
+        .vocab-term {
+            font-family: var(--font-mono);
+            font-size: 1rem;
             font-weight: 600;
-            transition: transform 0.2s;
+            color: var(--cyan);
+            margin-bottom: 0.5rem;
+            display: block;
         }
-
-        .quick-links a:hover {
-            transform: translateY(-2px);
+        
+        .vocab-def {
+            font-size: 0.875rem;
+            color: var(--silver);
         }
-
+        
+        /* Code Block */
+        .code-block {
+            background: var(--charcoal);
+            border: 1px solid var(--steel);
+            padding: 2rem;
+            overflow-x: auto;
+            font-family: var(--font-mono);
+            font-size: 0.875rem;
+            line-height: 1.8;
+        }
+        
+        .code-block code {
+            color: var(--white);
+        }
+        
+        .code-block .comment {
+            color: var(--silver);
+        }
+        
+        .code-block .keyword {
+            color: var(--magenta);
+        }
+        
+        .code-block .string {
+            color: var(--neon-green);
+        }
+        
+        /* Installation Section */
+        .install-steps {
+            display: grid;
+            gap: 2rem;
+        }
+        
+        .install-step {
+            display: grid;
+            grid-template-columns: auto 1fr;
+            gap: 2rem;
+            align-items: start;
+        }
+        
+        .step-number {
+            font-family: var(--font-mono);
+            font-size: 4rem;
+            font-weight: 700;
+            color: var(--steel);
+            line-height: 1;
+        }
+        
+        .step-content h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+        
+        /* Links Section */
+        .links-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .link-card {
+            background: var(--charcoal);
+            border: 1px solid var(--steel);
+            padding: 2rem;
+            text-decoration: none;
+            color: var(--white);
+            transition: all 0.3s var(--ease-out-expo);
+            display: block;
+        }
+        
+        .link-card:hover {
+            border-color: var(--cyan);
+            transform: translateX(8px);
+        }
+        
+        .link-card h4 {
+            font-family: var(--font-mono);
+            font-size: 0.875rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--cyan);
+            margin-bottom: 0.5rem;
+        }
+        
+        .link-card p {
+            font-size: 0.875rem;
+            color: var(--silver);
+        }
+        
+        /* Footer */
+        footer {
+            padding: 4rem 0;
+            border-top: 1px solid var(--steel);
+            margin-top: 4rem;
+        }
+        
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+        
+        .footer-brand {
+            font-family: var(--font-mono);
+            font-size: 0.875rem;
+            color: var(--silver);
+        }
+        
+        .footer-links {
+            display: flex;
+            gap: 2rem;
+        }
+        
+        .footer-links a {
+            color: var(--silver);
+            text-decoration: none;
+            font-size: 0.875rem;
+            transition: color 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: var(--cyan);
+        }
+        
+        /* Kinetic Typography Animation */
+        .kinetic-text {
+            animation: kinetic 10s linear infinite;
+        }
+        
+        @keyframes kinetic {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+        
+        /* Scroll Animations */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s var(--ease-out-expo);
+        }
+        
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Mobile Responsive */
         @media (max-width: 768px) {
-            header h1 {
+            .container {
+                padding: 0 1rem;
+            }
+            
+            .hero-title {
+                font-size: clamp(2rem, 15vw, 4rem);
+            }
+            
+            .cta-group {
+                flex-direction: column;
+            }
+            
+            .btn {
+                width: 100%;
+                justify-content: center;
+            }
+            
+            .install-step {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+            
+            .step-number {
                 font-size: 2rem;
             }
             
-            .container {
-                padding: 1rem;
+            .footer-content {
+                flex-direction: column;
+                text-align: center;
             }
-            
-            .content {
-                padding: 1rem;
-            }
+        }
+        
+        /* Micro-interactions */
+        .hover-lift {
+            transition: transform 0.3s var(--ease-out-expo);
+        }
+        
+        .hover-lift:hover {
+            transform: translateY(-4px);
+        }
+        
+        /* Glassmorphism Card */
+        .glass-card {
+            background: rgba(30, 32, 38, 0.8);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        /* Neon Glow Effect */
+        .neon-glow {
+            box-shadow: 
+                0 0 20px rgba(0, 255, 255, 0.3),
+                0 0 40px rgba(255, 0, 255, 0.2);
+        }
+        
+        /* Brutalist Border */
+        .brutalist-border {
+            border: 3px solid var(--white);
+            box-shadow: 8px 8px 0 var(--cyan);
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <header>
-            <h1>🎨 AI Visual Synthesis</h1>
-            <p>Complete framework for AI-powered visual generation and UI/UX design</p>
-        </header>
-
-        <div class="quick-links">
-            <a href="#quick-start">Quick Start</a>
-            <a href="#framework">8-Layer Framework</a>
-            <a href="#vocabulary">Design Vocabulary</a>
-            <a href="#modes">Animal Modes</a>
-            <a href="#checklist">Quality Checklist</a>
-        </div>
-
-        <div class="content">
-            <section id="quick-start">
-                <h2>🎯 Quick Start</h2>
-                <p>Install the master reference and add to your AI instructions:</p>
-                <pre><code># Download the latest promptc framework
-curl -sL "https://raw.githubusercontent.com/marktantongco/promptc/master/MASTER_REFERENCE.md" > SKILLS.md
-
-# Add to AI instructions:
-"Before generating UI or architectural code, read SKILLS.md and use the 8-Layer Prompt Architecture."</code></pre>
-            </section>
-
-            <section id="framework">
-                <h2>📋 8-Layer Prompt Architecture</h2>
-                <p>Universal structure for production-quality visual outputs:</p>
-                <pre><code>ROLE → CONTEXT → OBJECTIVE → CONSTRAINTS → AESTHETIC → PLANNING → OUTPUT → REFINEMENT</code></pre>
-                
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Layer</th>
-                            <th>Purpose</th>
-                            <th>Missing It Causes</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td><strong>ROLE</strong></td>
-                            <td>Who the AI acts as</td>
-                            <td>Generic, shallow responses</td>
-                        </tr>
-                        <tr>
-                            <td><strong>CONTEXT</strong></td>
-                            <td>Product, audience, platform</td>
-                            <td>Misaligned output</td>
-                        </tr>
-                        <tr>
-                            <td><strong>OBJECTIVE</strong></td>
-                            <td>What success looks like</td>
-                            <td>Aimless generation</td>
-                        </tr>
-                        <tr>
-                            <td><strong>CONSTRAINTS</strong></td>
-                            <td>Quality guardrails</td>
-                            <td>Mediocre output</td>
-                        </tr>
-                        <tr>
-                            <td><strong>AESTHETIC</strong></td>
-                            <td>Design language / tone</td>
-                            <td>Visually dull or off-brand</td>
-                        </tr>
-                        <tr>
-                            <td><strong>PLANNING</strong></td>
-                            <td>Reason before generating</td>
-                            <td>Structural mistakes</td>
-                        </tr>
-                        <tr>
-                            <td><strong>OUTPUT</strong></td>
-                            <td>Exact format to deliver</td>
-                            <td>Incomplete files</td>
-                        </tr>
-                        <tr>
-                            <td><strong>REFINEMENT</strong></td>
-                            <td>Self-critique before final</td>
-                            <td>First-draft quality only</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </section>
-
-            <section id="vocabulary">
-                <h2>🎨 Design Vocabulary Reference</h2>
-                <p>Use these exact terms to steer visual output precisely:</p>
-                <ul>
-                    <li><code>glassmorphism</code> - Frosted glass panels with translucent, blurred backdrop</li>
-                    <li><code>brutalist UI</code> - Raw, oversized, high-contrast, intentionally rough</li>
-                    <li><code>kinetic typography</code> - Text that animates, morphs, or reacts to scroll</li>
-                    <li><code>bento grid</code> - Mosaic card layout — Apple-style asymmetric grid</li>
-                    <li><code>micro-interactions</code> - Tiny animations on hover, click, scroll, focus</li>
-                    <li><code>neon accent</code> - Single bright color pop against dark background</li>
-                    <li><code>liquid gradient</code> - Smooth, animated, shifting background color blends</li>
-                    <li><code>dark-mode native</code> - Designed for dark backgrounds first, light second</li>
-                </ul>
-            </section>
-
-            <section id="modes">
-                <h2>🧠 Animal Thinking Modes</h2>
-                <p>Trigger by name: <em>"Apply Owl Mode"</em>, <em>"Use Beaver Mode on this"</em>, <em>"Think like an Eagle"</em></p>
-                
-                <div style="margin: 1rem 0;">
-                    <span class="animal-mode">🐇 Rabbit - Multiply Ideas</span>
-                    <span class="animal-mode">🦉 Owl - Deep Analysis</span>
-                    <span class="animal-mode">🐜 Ant - Break Into Steps</span>
-                    <span class="animal-mode">🦅 Eagle - Big Picture Strategy</span>
-                    <span class="animal-mode">🐬 Dolphin - Creative Solutions</span>
-                    <span class="animal-mode">🦫 Beaver - Build Systems</span>
-                    <span class="animal-mode">🐘 Elephant - Cross-Field Connections</span>
+    <div class="grid-bg"></div>
+    <div class="noise"></div>
+    
+    <main class="container">
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-badge">
+                <span>v2026.3</span>
+                <span>// Prompt Engineering Framework</span>
+            </div>
+            
+            <h1 class="hero-title">
+                <span class="gradient">AI</span> <span class="outline">Visual</span><br>
+                <span>Synthesis</span>
+            </h1>
+            
+            <p class="hero-description">
+                Ultra-modern prompt engineering framework for AI-powered visual generation and UI/UX design. 
+                Built with brutalist aesthetics, kinetic typography, and micro-interactions.
+            </p>
+            
+            <div class="cta-group">
+                <a href="#installation" class="btn btn-primary hover-lift">
+                    <span>↑</span> Install Now
+                </a>
+                <a href="#architecture" class="btn btn-secondary hover-lift">
+                    <span>↓</span> Learn More
+                </a>
+            </div>
+        </section>
+        
+        <!-- Architecture Section -->
+        <section id="architecture">
+            <div class="section-header reveal">
+                <span class="section-label">01 // Core Framework</span>
+                <h2 class="section-title">8-Layer Prompt<br>Architecture</h2>
+            </div>
+            
+            <div class="architecture-grid reveal">
+                <div class="arch-layer">
+                    <div class="arch-number">01</div>
+                    <div class="arch-name">Role</div>
+                    <div class="arch-desc">Who the AI acts as — defines expertise level and perspective</div>
                 </div>
-
-                <h3>Power Combos</h3>
-                <ul>
-                    <li><strong>Build AI content system:</strong> 🦅 Eagle → 🦫 Beaver → 🐜 Ant</li>
-                    <li><strong>Solve complex problem:</strong> 🦉 Owl → 🐬 Dolphin → 🐘 Elephant</li>
-                    <li><strong>Brainstorm channel/product:</strong> 🐇 Rabbit → 🦅 Eagle → 🐜 Ant</li>
-                </ul>
-            </section>
-
-            <section id="checklist">
-                <h2>✅ Prompt Quality Checklist</h2>
-                <pre><code>STRUCTURE
-  [ ] Role defined — who is the AI acting as?
-  [ ] Goal clear — one sentence maximum
-  [ ] Objective and success criteria stated
-  [ ] Constraints listed explicitly
-
-DESIGN (for UI/UX prompts)
-  [ ] Platform specified — mobile or web or hybrid
-  [ ] 3+ aesthetic keywords included
-  [ ] Animation library named — Framer Motion or GSAP or None
-  [ ] Mobile-first stated explicitly
-
-TECHNICAL
-  [ ] Stack specified — framework + styling + animation
-  [ ] Output format requested — folder + files + instructions
-  [ ] Accessibility: WCAG AA minimum stated
-  [ ] Performance: 60fps animation budget stated
-
-QUALITY
-  [ ] No vague words — nice, cool, awesome, modern, good
-  [ ] Refinement instruction included
-  [ ] At least one interaction metaphor defined</code></pre>
-            </section>
-
-            <section id="resources">
-                <h2>🔗 Resources</h2>
-                <ul>
-                    <li><strong>Master Reference:</strong> <a href="https://raw.githubusercontent.com/marktantongco/promptc/master/MASTER_REFERENCE.md">https://raw.githubusercontent.com/marktantongco/promptc/master/MASTER_REFERENCE.md</a></li>
-                    <li><strong>Main Framework:</strong> <a href="https://ai-visual-synthesis.vercel.app/">https://ai-visual-synthesis.vercel.app/</a></li>
-                    <li><strong>GitHub:</strong> <a href="https://github.com/marktantongco/agents-skills">https://github.com/marktantongco/agents-skills</a></li>
-                    <li><strong>Raw Skill File:</strong> <a href="https://raw.githubusercontent.com/marktantongco/agents-skills/master/skills/ai-visual-synthesis/SKILL.md">SKILL.md</a></li>
-                </ul>
-            </section>
-        </div>
-
+                <div class="arch-layer">
+                    <div class="arch-number">02</div>
+                    <div class="arch-name">Context</div>
+                    <div class="arch-desc">Product, audience, platform — establishes the environment</div>
+                </div>
+                <div class="arch-layer">
+                    <div class="arch-number">03</div>
+                    <div class="arch-name">Objective</div>
+                    <div class="arch-desc">What success looks like — clear success criteria</div>
+                </div>
+                <div class="arch-layer">
+                    <div class="arch-number">04</div>
+                    <div class="arch-name">Constraints</div>
+                    <div class="arch-desc">Quality guardrails — accessibility, performance, limits</div>
+                </div>
+                <div class="arch-layer">
+                    <div class="arch-number">05</div>
+                    <div class="arch-name">Aesthetic</div>
+                    <div class="arch-desc">Design language, tone, visual style keywords</div>
+                </div>
+                <div class="arch-layer">
+                    <div class="arch-number">06</div>
+                    <div class="arch-name">Planning</div>
+                    <div class="arch-desc">Reason before generating — structural analysis</div>
+                </div>
+                <div class="arch-layer">
+                    <div class="arch-number">07</div>
+                    <div class="arch-name">Output</div>
+                    <div class="arch-desc">Exact format to deliver — file structure, type</div>
+                </div>
+                <div class="arch-layer">
+                    <div class="arch-number">08</div>
+                    <div class="arch-name">Refinement</div>
+                    <div class="arch-desc">Self-critique before final — iteration protocol</div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Animal Modes Section -->
+        <section id="modes">
+            <div class="section-header reveal">
+                <span class="section-label">02 // Thinking Modes</span>
+                <h2 class="section-title">Animal Thinking<br>Modes</h2>
+            </div>
+            
+            <div class="modes-grid reveal">
+                <div class="mode-card hover-lift">
+                    <span class="mode-emoji">🐇</span>
+                    <div class="mode-name">Rabbit</div>
+                    <div class="mode-desc">Multiply Ideas</div>
+                </div>
+                <div class="mode-card hover-lift">
+                    <span class="mode-emoji">🦉</span>
+                    <div class="mode-name">Owl</div>
+                    <div class="mode-desc">Deep Analysis</div>
+                </div>
+                <div class="mode-card hover-lift">
+                    <span class="mode-emoji">🐜</span>
+                    <div class="mode-name">Ant</div>
+                    <div class="mode-desc">Break Into Steps</div>
+                </div>
+                <div class="mode-card hover-lift">
+                    <span class="mode-emoji">🦅</span>
+                    <div class="mode-name">Eagle</div>
+                    <div class="mode-desc">Big Picture Strategy</div>
+                </div>
+                <div class="mode-card hover-lift">
+                    <span class="mode-emoji">🐬</span>
+                    <div class="mode-name">Dolphin</div>
+                    <div class="mode-desc">Creative Solutions</div>
+                </div>
+                <div class="mode-card hover-lift">
+                    <span class="mode-emoji">🦫</span>
+                    <div class="mode-name">Beaver</div>
+                    <div class="mode-desc">Build Systems</div>
+                </div>
+                <div class="mode-card hover-lift">
+                    <span class="mode-emoji">🐘</span>
+                    <div class="mode-name">Elephant</div>
+                    <div class="mode-desc">Cross-Field Connections</div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Design Vocabulary Section -->
+        <section id="vocabulary">
+            <div class="section-header reveal">
+                <span class="section-label">03 // Design Language</span>
+                <h2 class="section-title">Design<br>Vocabulary</h2>
+            </div>
+            
+            <div class="vocab-grid reveal">
+                <div class="vocab-item">
+                    <span class="vocab-term">glassmorphism</span>
+                    <span class="vocab-def">Frosted glass panels — translucent backdrop with blur</span>
+                </div>
+                <div class="vocab-item">
+                    <span class="vocab-term">brutalist ui</span>
+                    <span class="vocab-def">Raw, oversized, high-contrast intentional roughness</span>
+                </div>
+                <div class="vocab-item">
+                    <span class="vocab-term">kinetic typography</span>
+                    <span class="vocab-def">Text that animates, morphs, reacts to scroll</span>
+                </div>
+                <div class="vocab-item">
+                    <span class="vocab-term">bento grid</span>
+                    <span class="vocab-def">Apple-style asymmetric card mosaic layout</span>
+                </div>
+                <div class="vocab-item">
+                    <span class="vocab-term">micro-interactions</span>
+                    <span class="vocab-def">Tiny animations on hover, click, scroll, focus</span>
+                </div>
+                <div class="vocab-item">
+                    <span class="vocab-term">neon accent</span>
+                    <span class="vocab-def">Single bright color pop against dark background</span>
+                </div>
+                <div class="vocab-item">
+                    <span class="vocab-term">liquid gradient</span>
+                    <span class="vocab-def">Smooth, animated, shifting background blends</span>
+                </div>
+                <div class="vocab-item">
+                    <span class="vocab-term">dark-mode native</span>
+                    <span class="vocab-def">Designed for dark first, light as secondary</span>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Installation Section -->
+        <section id="installation">
+            <div class="section-header reveal">
+                <span class="section-label">04 // Get Started</span>
+                <h2 class="section-title">Installation</h2>
+            </div>
+            
+            <div class="install-steps reveal">
+                <div class="install-step">
+                    <div class="step-number">01</div>
+                    <div class="step-content">
+                        <h3>Quick Install</h3>
+                        <div class="code-block">
+                            <code>bash -c "$(curl -fsSL https://raw.githubusercontent.com/marktantongco/ai-visual-synthesis/main/install.sh)"</code>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="install-step">
+                    <div class="step-number">02</div>
+                    <div class="step-content">
+                        <h3>Manual Download</h3>
+                        <div class="code-block">
+                            <code>curl -sL "https://raw.githubusercontent.com/marktantongco/ai-visual-synthesis/main/SKILL.md" > SKILLS.md</code>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="install-step">
+                    <div class="step-number">03</div>
+                    <div class="step-content">
+                        <h3>Add to AI Instructions</h3>
+                        <div class="code-block">
+                            <code>Read SKILLS.md and use the 8-Layer Prompt Architecture before generating UI or code.</code>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Resources Section -->
+        <section id="resources">
+            <div class="section-header reveal">
+                <span class="section-label">05 // Resources</span>
+                <h2 class="section-title">Links &<br>References</h2>
+            </div>
+            
+            <div class="links-grid reveal">
+                <a href="https://github.com/marktantongco/ai-visual-synthesis" class="link-card" target="_blank">
+                    <h4>GitHub Repository</h4>
+                    <p>Source code and documentation</p>
+                </a>
+                <a href="https://github.com/marktantongco/promptc" class="link-card" target="_blank">
+                    <h4>promptc OS</h4>
+                    <p>Main framework repository</p>
+                </a>
+                <a href="https://raw.githubusercontent.com/marktantongco/promptc/master/MASTER_REFERENCE.md" class="link-card" target="_blank">
+                    <h4>Master Reference</h4>
+                    <p>Complete prompt engineering guide</p>
+                </a>
+                <a href="https://vercel.com" class="link-card" target="_blank">
+                    <h4>Deploy with Vercel</h4>
+                    <p>Free hosting for static sites</p>
+                </a>
+            </div>
+        </section>
+        
+        <!-- Footer -->
         <footer>
-            <p>AI Visual Synthesis • Updated March 2026 • Based on promptc OS framework v2.0</p>
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <span class="gradient">AI Visual Synthesis</span> // promptc OS v2.0
+                </div>
+                <div class="footer-links">
+                    <a href="#architecture">Architecture</a>
+                    <a href="#modes">Modes</a>
+                    <a href="#vocabulary">Vocabulary</a>
+                    <a href="#installation">Install</a>
+                    <a href="#resources">Resources</a>
+                </div>
+            </div>
         </footer>
-    </div>
+    </main>
+    
+    <script>
+        // Scroll Reveal Animation
+        const revealElements = document.querySelectorAll('.reveal');
+        
+        const revealOnScroll = () => {
+            revealElements.forEach(el => {
+                const elementTop = el.getBoundingClientRect().top;
+                const windowHeight = window.innerHeight;
+                
+                if (elementTop < windowHeight - 100) {
+                    el.classList.add('visible');
+                }
+            });
+        };
+        
+        window.addEventListener('scroll', revealOnScroll);
+        window.addEventListener('load', revealOnScroll);
+        
+        // Smooth Scroll for Anchor Links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+        
+        // Add parallax effect to grid background
+        const gridBg = document.querySelector('.grid-bg');
+        
+        document.addEventListener('mousemove', (e) => {
+            const x = (e.clientX / window.innerWidth - 0.5) * 20;
+            const y = (e.clientY / window.innerHeight - 0.5) * 20;
+            gridBg.style.transform = `translate(${x}px, ${y}px)`;
+        });
+        
+        // Kinetic text marquee
+        const kineticText = document.querySelector('.kinetic-text');
+        if (kineticText) {
+            kineticText.addEventListener('mouseenter', () => {
+                kineticText.style.animationPlayState = 'paused';
+            });
+            kineticText.addEventListener('mouseleave', () => {
+                kineticText.style.animationPlayState = 'running';
+            });
+        }
+    </script>
 </body>
 </html>
