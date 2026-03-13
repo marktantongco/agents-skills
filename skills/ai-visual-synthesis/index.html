@@ -3,23 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="AI Visual Synthesis - Ultra-modern prompt engineering framework for AI-powered visual generation and UI/UX design with brutalist aesthetics">
-    <meta name="keywords" content="ai visual synthesis, prompt engineering, gen-z ui, brutalist design, kinetic typography, 8-layer architecture, micro-interactions, glassmorphism">
+    <meta name="description" content="AI Visual Synthesis - Complete prompt engineering guide with 8-layer architecture, animal thinking modes, and design vocabulary">
+    <meta name="keywords" content="ai visual synthesis, prompt engineering, gen-z ui, brutalist design, 8-layer architecture, animal thinking modes, prompt templates, quality checklist, kinetic typography">
     <meta name="author" content="promptc OS">
     <meta name="theme-color" content="#0B0D10">
+    <meta name="robots" content="index, follow">
     
-    <meta property="og:title" content="AI Visual Synthesis - Prompt Engineering Framework">
-    <meta property="og:description" content="Ultra-modern prompt engineering for AI-powered visual generation">
+    <meta property="og:title" content="AI Visual Synthesis - Complete Prompt Engineering Guide">
+    <meta property="og:description" content="Master prompt engineering with 8-layer architecture, animal thinking modes, and design vocabulary">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://ai-visual-synthesis.vercel.app">
     <meta property="og:site_name" content="AI Visual Synthesis">
-    <meta property="og:image" content="https://ai-visual-synthesis.vercel.app/og-image.png">
     
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="AI Visual Synthesis">
-    <meta name="twitter:description" content="Ultra-modern prompt engineering framework">
+    <meta name="twitter:title" content="AI Visual Synthesis - Prompt Engineering Guide">
+    <meta name="twitter:description" content="Complete guide with 8-layer architecture and animal thinking modes">
     
-    <title>AI Visual Synthesis — Prompt Engineering Framework</title>
+    <title>AI Visual Synthesis — Prompt Engineering Guide</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -36,8 +36,6 @@
             --cyan: #00FFFF;
             --magenta: #FF00FF;
             --neon-green: #39FF14;
-            --electric-blue: #0066FF;
-            --hot-pink: #FF1493;
             --warning: #FFB000;
             
             --font-display: 'Space Grotesk', sans-serif;
@@ -45,6 +43,7 @@
             
             --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
             --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+            --nav-height: 70px;
         }
         
         *, *::before, *::after {
@@ -55,6 +54,8 @@
         
         html {
             scroll-behavior: smooth;
+            scroll-snap-type: y mandatory;
+            overflow-x: hidden;
         }
         
         body {
@@ -62,11 +63,10 @@
             background: var(--void-black);
             color: var(--white);
             line-height: 1.6;
-            overflow-x: hidden;
             min-height: 100vh;
         }
         
-        /* Brutalist Grid Background */
+        /* Grid Background */
         .grid-bg {
             position: fixed;
             top: 0;
@@ -74,42 +74,139 @@
             width: 100%;
             height: 100%;
             background-image: 
-                linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
-            background-size: 50px 50px;
+                linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+            background-size: 40px 40px;
             pointer-events: none;
             z-index: 0;
         }
         
-        /* Noise Texture Overlay */
-        .noise {
+        /* Sticky Navigation */
+        .nav {
             position: fixed;
             top: 0;
             left: 0;
-            width: 100%;
-            height: 100%;
-            opacity: 0.05;
-            pointer-events: none;
-            z-index: 1;
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+            right: 0;
+            height: var(--nav-height);
+            background: rgba(11, 13, 16, 0.85);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--steel);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 2rem;
+            transition: all 0.3s var(--ease-out-expo);
+        }
+        
+        .nav.scrolled {
+            height: 60px;
+            background: rgba(11, 13, 16, 0.95);
+        }
+        
+        .nav-logo {
+            font-family: var(--font-mono);
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: var(--white);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .nav-logo span {
+            color: var(--cyan);
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 0.25rem;
+            list-style: none;
+            overflow-x: auto;
+            max-width: 70%;
+            scrollbar-width: none;
+        }
+        
+        .nav-links::-webkit-scrollbar {
+            display: none;
+        }
+        
+        .nav-links a {
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            color: var(--silver);
+            text-decoration: none;
+            padding: 0.5rem 0.75rem;
+            border-radius: 4px;
+            white-space: nowrap;
+            transition: all 0.2s var(--ease-out-expo);
+        }
+        
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--void-black);
+            background: var(--cyan);
+        }
+        
+        .nav-actions {
+            display: flex;
+            gap: 0.5rem;
+        }
+        
+        .nav-btn {
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            padding: 0.5rem 1rem;
+            border: 1px solid var(--steel);
+            background: transparent;
+            color: var(--white);
+            cursor: pointer;
+            transition: all 0.2s var(--ease-out-expo);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .nav-btn:hover {
+            border-color: var(--cyan);
+            color: var(--cyan);
+        }
+        
+        .nav-btn.primary {
+            background: var(--cyan);
+            color: var(--void-black);
+            border-color: var(--cyan);
+        }
+        
+        .nav-btn.primary:hover {
+            background: var(--magenta);
+            border-color: var(--magenta);
         }
         
         /* Main Container */
-        .container {
+        main {
             position: relative;
             z-index: 10;
-            max-width: 1400px;
+        }
+        
+        section {
+            min-height: 100vh;
+            scroll-snap-align: start;
+            padding: calc(var(--nav-height) + 4rem) 2rem 4rem;
+            max-width: 1200px;
             margin: 0 auto;
-            padding: 0 2rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
         }
         
         /* Hero Section */
         .hero {
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
+            text-align: center;
             justify-content: center;
-            padding: 4rem 0;
+            min-height: 100vh;
         }
         
         .hero-badge {
@@ -125,7 +222,7 @@
             letter-spacing: 0.1em;
             color: var(--cyan);
             margin-bottom: 2rem;
-            animation: fadeInUp 0.8s var(--ease-out-expo) forwards;
+            animation: fadeInUp 0.6s var(--ease-out-expo) forwards;
         }
         
         .hero-badge::before {
@@ -137,111 +234,51 @@
         }
         
         @keyframes pulse {
-            0%, 100% { opacity: 1; transform: scale(1); }
-            50% { opacity: 0.5; transform: scale(0.8); }
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
         }
         
         @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
         
-        .hero-title {
-            font-size: clamp(3rem, 10vw, 8rem);
+        .hero h1 {
+            font-size: clamp(2.5rem, 8vw, 6rem);
             font-weight: 700;
-            line-height: 0.9;
+            line-height: 1;
             letter-spacing: -0.03em;
-            margin-bottom: 2rem;
-            animation: fadeInUp 0.8s var(--ease-out-expo) 0.1s forwards;
+            margin-bottom: 1.5rem;
+            animation: fadeInUp 0.6s var(--ease-out-expo) 0.1s forwards;
             opacity: 0;
         }
         
-        .hero-title .gradient {
+        .hero h1 .gradient {
             background: linear-gradient(135deg, var(--cyan), var(--magenta));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
         
-        .hero-title .outline {
-            -webkit-text-stroke: 2px var(--white);
-            color: transparent;
-            opacity: 0.3;
-        }
-        
-        .hero-description {
-            font-size: clamp(1rem, 2vw, 1.5rem);
+        .hero p {
+            font-size: clamp(1rem, 2vw, 1.25rem);
             color: var(--silver);
             max-width: 600px;
-            margin-bottom: 3rem;
-            animation: fadeInUp 0.8s var(--ease-out-expo) 0.2s forwards;
+            margin: 0 auto 2rem;
+            animation: fadeInUp 0.6s var(--ease-out-expo) 0.2s forwards;
             opacity: 0;
         }
         
-        /* Brutalist CTA Buttons */
-        .cta-group {
+        .hero-cta {
             display: flex;
             gap: 1rem;
+            justify-content: center;
             flex-wrap: wrap;
-            animation: fadeInUp 0.8s var(--ease-out-expo) 0.3s forwards;
+            animation: fadeInUp 0.6s var(--ease-out-expo) 0.3s forwards;
             opacity: 0;
-        }
-        
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.75rem;
-            padding: 1rem 2rem;
-            font-family: var(--font-mono);
-            font-size: 0.875rem;
-            font-weight: 600;
-            text-decoration: none;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            transition: all 0.3s var(--ease-out-expo);
-            cursor: pointer;
-            border: none;
-        }
-        
-        .btn-primary {
-            background: var(--white);
-            color: var(--void-black);
-        }
-        
-        .btn-primary:hover {
-            transform: translateY(-4px);
-            box-shadow: 
-                8px 8px 0 var(--cyan),
-                -4px -4px 0 var(--magenta);
-        }
-        
-        .btn-secondary {
-            background: transparent;
-            color: var(--white);
-            border: 2px solid var(--white);
-        }
-        
-        .btn-secondary:hover {
-            background: var(--white);
-            color: var(--void-black);
-            transform: translateY(-4px);
         }
         
         /* Section Styles */
-        section {
-            padding: 8rem 0;
-        }
-        
-        .section-header {
-            margin-bottom: 4rem;
-        }
-        
         .section-label {
             font-family: var(--font-mono);
             font-size: 0.75rem;
@@ -253,108 +290,204 @@
         }
         
         .section-title {
-            font-size: clamp(2rem, 5vw, 4rem);
+            font-size: clamp(2rem, 4vw, 3rem);
             font-weight: 700;
             line-height: 1.1;
             letter-spacing: -0.02em;
+            margin-bottom: 2rem;
         }
         
-        /* Architecture Section */
-        .architecture-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 1px;
-            background: var(--steel);
-            border: 1px solid var(--steel);
-        }
-        
-        .arch-layer {
+        /* Click-to-Reveal Cards */
+        .reveal-card {
             background: var(--charcoal);
-            padding: 2rem;
-            transition: all 0.3s var(--ease-out-expo);
-            position: relative;
+            border: 1px solid var(--steel);
+            margin-bottom: 1rem;
             overflow: hidden;
+            transition: all 0.3s var(--ease-out-expo);
         }
         
-        .arch-layer::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 4px;
-            height: 100%;
-            background: var(--cyan);
-            transform: scaleY(0);
+        .reveal-card:hover {
+            border-color: var(--cyan);
+        }
+        
+        .reveal-header {
+            padding: 1.5rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            user-select: none;
+        }
+        
+        .reveal-header:hover {
+            background: rgba(0, 255, 255, 0.05);
+        }
+        
+        .reveal-title {
+            font-family: var(--font-mono);
+            font-size: 0.875rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+        
+        .reveal-icon {
+            width: 24px;
+            height: 24px;
+            border: 2px solid var(--cyan);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s var(--ease-out-expo);
+            flex-shrink: 0;
+        }
+        
+        .reveal-icon::after {
+            content: '+';
+            font-size: 1rem;
+            color: var(--cyan);
             transition: transform 0.3s var(--ease-out-expo);
         }
         
-        .arch-layer:hover {
-            background: var(--concrete);
+        .reveal-card.active .reveal-icon {
+            background: var(--cyan);
+            border-color: var(--cyan);
         }
         
-        .arch-layer:hover::before {
-            transform: scaleY(1);
+        .reveal-card.active .reveal-icon::after {
+            content: '−';
+            color: var(--void-black);
+            transform: rotate(180deg);
         }
         
-        .arch-number {
+        .reveal-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s var(--ease-out-expo);
+        }
+        
+        .reveal-card.active .reveal-content {
+            max-height: 1000px;
+        }
+        
+        .reveal-body {
+            padding: 0 1.5rem 1.5rem;
+            border-top: 1px solid var(--steel);
+        }
+        
+        /* Code Block */
+        .code-block {
+            background: var(--void-black);
+            border: 1px solid var(--steel);
+            padding: 1.25rem;
             font-family: var(--font-mono);
-            font-size: 3rem;
-            font-weight: 700;
-            color: var(--steel);
-            line-height: 1;
-            margin-bottom: 1rem;
+            font-size: 0.8rem;
+            line-height: 1.6;
+            overflow-x: auto;
+            margin: 1rem 0;
+            position: relative;
         }
         
-        .arch-name {
-            font-size: 1.25rem;
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
+        .code-block code {
+            color: var(--white);
         }
         
-        .arch-desc {
-            font-size: 0.875rem;
-            color: var(--silver);
+        .code-block .comment { color: var(--silver); }
+        .code-block .keyword { color: var(--magenta); }
+        .code-block .string { color: var(--neon-green); }
+        .code-block .prompt { color: var(--cyan); }
+        
+        /* Copy Button */
+        .copy-btn {
+            position: absolute;
+            top: 0.75rem;
+            right: 0.75rem;
+            padding: 0.4rem 0.75rem;
+            background: var(--steel);
+            border: none;
+            color: var(--white);
+            font-family: var(--font-mono);
+            font-size: 0.7rem;
+            cursor: pointer;
+            transition: all 0.2s var(--ease-out-expo);
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
         }
         
-        /* Animal Modes Grid */
-        .modes-grid {
+        .copy-btn:hover {
+            background: var(--cyan);
+            color: var(--void-black);
+        }
+        
+        .copy-btn.copied {
+            background: var(--neon-green);
+            color: var(--void-black);
+        }
+        
+        /* Animal Mode Cards */
+        .mode-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
             gap: 1rem;
+            margin: 2rem 0;
         }
         
         .mode-card {
             background: var(--charcoal);
             border: 1px solid var(--steel);
-            padding: 2rem;
+            padding: 1.5rem;
             text-align: center;
-            transition: all 0.3s var(--ease-out-expo);
             cursor: pointer;
+            transition: all 0.3s var(--ease-out-expo);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .mode-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: var(--cyan);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.3s var(--ease-out-expo);
         }
         
         .mode-card:hover {
-            transform: translateY(-8px);
             border-color: var(--cyan);
-            box-shadow: 
-                0 0 30px rgba(0, 255, 255, 0.2),
-                inset 0 0 30px rgba(0, 255, 255, 0.05);
+            transform: translateY(-4px);
+        }
+        
+        .mode-card:hover::before {
+            transform: scaleX(1);
+        }
+        
+        .mode-card.active {
+            border-color: var(--magenta);
+            background: rgba(255, 0, 255, 0.1);
         }
         
         .mode-emoji {
-            font-size: 3rem;
-            margin-bottom: 1rem;
+            font-size: 2.5rem;
+            margin-bottom: 0.75rem;
             display: block;
         }
         
         .mode-name {
             font-family: var(--font-mono);
-            font-size: 0.875rem;
+            font-size: 0.8rem;
             font-weight: 600;
             text-transform: uppercase;
             letter-spacing: 0.1em;
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.25rem;
         }
         
         .mode-desc {
@@ -362,104 +495,130 @@
             color: var(--silver);
         }
         
-        /* Design Vocabulary */
-        .vocab-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1rem;
-        }
-        
-        .vocab-item {
+        /* Quality Checklist */
+        .checklist {
             background: var(--charcoal);
-            border-left: 4px solid var(--cyan);
+            border: 1px solid var(--warning);
             padding: 1.5rem;
-            transition: all 0.3s var(--ease-out-expo);
+            margin: 2rem 0;
         }
         
-        .vocab-item:hover {
-            background: var(--concrete);
-            border-left-color: var(--magenta);
-        }
-        
-        .vocab-term {
+        .checklist-header {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 1rem;
             font-family: var(--font-mono);
-            font-size: 1rem;
+            font-size: 0.875rem;
             font-weight: 600;
-            color: var(--cyan);
-            margin-bottom: 0.5rem;
-            display: block;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--warning);
         }
         
-        .vocab-def {
+        .checklist-items {
+            display: grid;
+            gap: 0.75rem;
+        }
+        
+        .checklist-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
             font-size: 0.875rem;
             color: var(--silver);
         }
         
-        /* Code Block */
-        .code-block {
+        .checklist-item::before {
+            content: '☐';
+            color: var(--warning);
+            font-size: 1rem;
+            flex-shrink: 0;
+        }
+        
+        /* Template Grid */
+        .template-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+        
+        .template-card {
             background: var(--charcoal);
             border: 1px solid var(--steel);
-            padding: 2rem;
-            overflow-x: auto;
+            padding: 1.5rem;
+            transition: all 0.3s var(--ease-out-expo);
+            cursor: pointer;
+        }
+        
+        .template-card:hover {
+            border-color: var(--cyan);
+            transform: translateY(-4px);
+            box-shadow: 0 10px 40px rgba(0, 255, 255, 0.1);
+        }
+        
+        .template-card h4 {
             font-family: var(--font-mono);
             font-size: 0.875rem;
-            line-height: 1.8;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
         }
         
-        .code-block code {
-            color: var(--white);
-        }
-        
-        .code-block .comment {
+        .template-card p {
+            font-size: 0.875rem;
             color: var(--silver);
         }
         
-        .code-block .keyword {
-            color: var(--magenta);
+        .template-badge {
+            font-size: 0.65rem;
+            padding: 0.2rem 0.5rem;
+            background: var(--cyan);
+            color: var(--void-black);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
         }
         
-        .code-block .string {
-            color: var(--neon-green);
+        /* Vocabulary Tags */
+        .vocab-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin: 1rem 0;
         }
         
-        /* Installation Section */
-        .install-steps {
-            display: grid;
-            gap: 2rem;
-        }
-        
-        .install-step {
-            display: grid;
-            grid-template-columns: auto 1fr;
-            gap: 2rem;
-            align-items: start;
-        }
-        
-        .step-number {
+        .vocab-tag {
+            padding: 0.5rem 1rem;
+            background: var(--charcoal);
+            border: 1px solid var(--steel);
             font-family: var(--font-mono);
-            font-size: 4rem;
-            font-weight: 700;
-            color: var(--steel);
-            line-height: 1;
+            font-size: 0.75rem;
+            cursor: pointer;
+            transition: all 0.2s var(--ease-out-expo);
         }
         
-        .step-content h3 {
-            font-size: 1.5rem;
-            font-weight: 600;
-            margin-bottom: 1rem;
+        .vocab-tag:hover {
+            border-color: var(--cyan);
+            color: var(--cyan);
         }
         
-        /* Links Section */
+        /* Links Grid */
         .links-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1.5rem;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1rem;
+            margin: 2rem 0;
         }
         
         .link-card {
             background: var(--charcoal);
             border: 1px solid var(--steel);
-            padding: 2rem;
+            padding: 1.25rem;
             text-decoration: none;
             color: var(--white);
             transition: all 0.3s var(--ease-out-expo);
@@ -473,377 +632,782 @@
         
         .link-card h4 {
             font-family: var(--font-mono);
-            font-size: 0.875rem;
+            font-size: 0.8rem;
             text-transform: uppercase;
             letter-spacing: 0.1em;
             color: var(--cyan);
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.4rem;
         }
         
         .link-card p {
-            font-size: 0.875rem;
+            font-size: 0.8rem;
             color: var(--silver);
         }
         
         /* Footer */
         footer {
-            padding: 4rem 0;
+            padding: 3rem 2rem;
             border-top: 1px solid var(--steel);
-            margin-top: 4rem;
+            text-align: center;
         }
         
         .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
             display: flex;
             justify-content: space-between;
             align-items: center;
             flex-wrap: wrap;
-            gap: 2rem;
+            gap: 1rem;
         }
         
         .footer-brand {
             font-family: var(--font-mono);
-            font-size: 0.875rem;
+            font-size: 0.8rem;
             color: var(--silver);
+        }
+        
+        .footer-brand span {
+            color: var(--cyan);
         }
         
         .footer-links {
             display: flex;
-            gap: 2rem;
+            gap: 1.5rem;
         }
         
         .footer-links a {
             color: var(--silver);
             text-decoration: none;
-            font-size: 0.875rem;
-            transition: color 0.3s;
+            font-size: 0.8rem;
+            transition: color 0.2s;
         }
         
         .footer-links a:hover {
             color: var(--cyan);
         }
         
-        /* Kinetic Typography Animation */
-        .kinetic-text {
-            animation: kinetic 10s linear infinite;
-        }
-        
-        @keyframes kinetic {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
-        }
-        
-        /* Scroll Animations */
-        .reveal {
+        /* Animations */
+        .fade-in {
             opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.8s var(--ease-out-expo);
+            transform: translateY(20px);
+            transition: all 0.6s var(--ease-out-expo);
         }
         
-        .reveal.visible {
+        .fade-in.visible {
             opacity: 1;
             transform: translateY(0);
         }
         
+        /* Scroll Snap Indicators */
+        .scroll-indicators {
+            position: fixed;
+            right: 2rem;
+            top: 50%;
+            transform: translateY(-50%);
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+            z-index: 100;
+        }
+        
+        .scroll-dot {
+            width: 12px;
+            height: 12px;
+            border: 2px solid var(--steel);
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.3s var(--ease-out-expo);
+        }
+        
+        .scroll-dot:hover,
+        .scroll-dot.active {
+            border-color: var(--cyan);
+            background: var(--cyan);
+        }
+        
         /* Mobile Responsive */
         @media (max-width: 768px) {
-            .container {
+            :root {
+                --nav-height: 60px;
+            }
+            
+            .nav {
                 padding: 0 1rem;
             }
             
-            .hero-title {
-                font-size: clamp(2rem, 15vw, 4rem);
+            .nav-links {
+                display: none;
             }
             
-            .cta-group {
-                flex-direction: column;
+            .scroll-indicators {
+                display: none;
             }
             
-            .btn {
-                width: 100%;
-                justify-content: center;
+            section {
+                padding: calc(var(--nav-height) + 2rem) 1rem 2rem;
             }
             
-            .install-step {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .template-grid,
+            .mode-grid,
+            .links-grid {
                 grid-template-columns: 1fr;
-                gap: 1rem;
-            }
-            
-            .step-number {
-                font-size: 2rem;
-            }
-            
-            .footer-content {
-                flex-direction: column;
-                text-align: center;
             }
         }
         
-        /* Micro-interactions */
-        .hover-lift {
-            transition: transform 0.3s var(--ease-out-expo);
+        /* Quick Install */
+        .install-box {
+            background: var(--charcoal);
+            border: 2px solid var(--cyan);
+            padding: 1.5rem;
+            margin: 1.5rem 0;
         }
         
-        .hover-lift:hover {
-            transform: translateY(-4px);
+        .install-box code {
+            display: block;
+            font-family: var(--font-mono);
+            font-size: 0.85rem;
+            word-break: break-all;
+            color: var(--cyan);
         }
         
-        /* Glassmorphism Card */
-        .glass-card {
-            background: rgba(30, 32, 38, 0.8);
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+        /* Hierarchy Level Indicators */
+        .level-badge {
+            display: inline-block;
+            padding: 0.2rem 0.5rem;
+            font-family: var(--font-mono);
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-right: 0.5rem;
         }
         
-        /* Neon Glow Effect */
-        .neon-glow {
-            box-shadow: 
-                0 0 20px rgba(0, 255, 255, 0.3),
-                0 0 40px rgba(255, 0, 255, 0.2);
-        }
-        
-        /* Brutalist Border */
-        .brutalist-border {
-            border: 3px solid var(--white);
-            box-shadow: 8px 8px 0 var(--cyan);
-        }
+        .level-badge.foundational { background: var(--steel); color: var(--silver); }
+        .level-badge.intermediate { background: var(--cyan); color: var(--void-black); }
+        .level-badge.advanced { background: var(--magenta); color: var(--white); }
+        .level-badge.expert { background: var(--neon-green); color: var(--void-black); }
     </style>
 </head>
 <body>
     <div class="grid-bg"></div>
-    <div class="noise"></div>
     
-    <main class="container">
+    <!-- Sticky Navigation -->
+    <nav class="nav" id="nav">
+        <a href="#hero" class="nav-logo">
+            <span>◈</span> AI Visual Synthesis
+        </a>
+        <ul class="nav-links">
+            <li><a href="#quickstart">Quick Start</a></li>
+            <li><a href="#architecture">Architecture</a></li>
+            <li><a href="#modes">Thinking Modes</a></li>
+            <li><a href="#vocabulary">Vocabulary</a></li>
+            <li><a href="#templates">Templates</a></li>
+            <li><a href="#workflows">Workflows</a></li>
+            <li><a href="#resources">Resources</a></li>
+        </ul>
+        <div class="nav-actions">
+            <a href="https://github.com/marktantongco/ai-visual-synthesis" class="nav-btn" target="_blank">GitHub</a>
+            <a href="#quickstart" class="nav-btn primary">Install</a>
+        </div>
+    </nav>
+    
+    <!-- Scroll Indicators -->
+    <div class="scroll-indicators">
+        <div class="scroll-dot active" data-section="hero"></div>
+        <div class="scroll-dot" data-section="quickstart"></div>
+        <div class="scroll-dot" data-section="architecture"></div>
+        <div class="scroll-dot" data-section="modes"></div>
+        <div class="scroll-dot" data-section="vocabulary"></div>
+        <div class="scroll-dot" data-section="templates"></div>
+        <div class="scroll-dot" data-section="workflows"></div>
+        <div class="scroll-dot" data-section="resources"></div>
+    </div>
+    
+    <main>
         <!-- Hero Section -->
-        <section class="hero">
+        <section id="hero" class="hero">
             <div class="hero-badge">
                 <span>v2026.3</span>
                 <span>// Prompt Engineering Framework</span>
             </div>
-            
-            <h1 class="hero-title">
-                <span class="gradient">AI</span> <span class="outline">Visual</span><br>
-                <span>Synthesis</span>
+            <h1>
+                <span class="gradient">AI</span> Visual<br>Synthesis
             </h1>
+            <p>
+                Complete prompt engineering guide with 8-layer architecture, animal thinking modes, 
+                design vocabulary, and quality checklists. Built for speed and clarity.
+            </p>
+            <div class="hero-cta">
+                <a href="#quickstart" class="nav-btn primary" style="padding: 1rem 2rem;">↑ Get Started</a>
+                <a href="#architecture" class="nav-btn" style="padding: 1rem 2rem;">↓ Explore</a>
+            </div>
+        </section>
+        
+        <!-- Quick Start Section -->
+        <section id="quickstart">
+            <span class="section-label">01 // Quick Start</span>
+            <h2 class="section-title">Install & Get Started</h2>
             
-            <p class="hero-description">
-                Ultra-modern prompt engineering framework for AI-powered visual generation and UI/UX design. 
-                Built with brutalist aesthetics, kinetic typography, and micro-interactions.
+            <div class="install-box fade-in">
+                <code>bash -c "$(curl -fsSL https://raw.githubusercontent.com/marktantongco/ai-visual-synthesis/main/install.sh)"</code>
+            </div>
+            
+            <div class="reveal-card fade-in" onclick="this.classList.toggle('active')">
+                <div class="reveal-header">
+                    <div class="reveal-title">
+                        <span class="reveal-icon"></span>
+                        Manual Installation
+                    </div>
+                </div>
+                <div class="reveal-content">
+                    <div class="reveal-body">
+                        <div class="code-block">
+                            <button class="copy-btn" onclick="copyCode(this)">⎘ Copy</button>
+                            <code># Download SKILL.md
+curl -sL "https://raw.githubusercontent.com/marktantongco/ai-visual-synthesis/main/SKILL.md" > SKILLS.md
+
+# Add to AI instructions
+echo "Read SKILLS.md and use 8-Layer Architecture" >> .cursorrules</code>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="links-grid">
+                <a href="https://github.com/marktantongco/ai-visual-synthesis" class="link-card" target="_blank">
+                    <h4>📦 GitHub Repo</h4>
+                    <p>Source code & documentation</p>
+                </a>
+                <a href="https://raw.githubusercontent.com/marktantongco/ai-visual-synthesis/main/SKILL.md" class="link-card" target="_blank">
+                    <h4>📄 Raw SKILL.md</h4>
+                    <p>Direct markdown file</p>
+                </a>
+                <a href="https://github.com/marktantongco/promptc" class="link-card" target="_blank">
+                    <h4>🚀 promptc OS</h4>
+                    <p>Main framework</p>
+                </a>
+            </div>
+        </section>
+        
+        <!-- 8-Layer Architecture Section -->
+        <section id="architecture">
+            <span class="section-label">02 // Core Framework</span>
+            <h2 class="section-title">8-Layer Prompt Architecture</h2>
+            
+            <div class="reveal-card fade-in" onclick="this.classList.toggle('active')">
+                <div class="reveal-header">
+                    <div class="reveal-title">
+                        <span class="reveal-icon"></span>
+                        <span class="level-badge foundational">Foundational</span>
+                        Full Architecture Template
+                    </div>
+                </div>
+                <div class="reveal-content">
+                    <div class="reveal-body">
+                        <div class="code-block">
+                            <button class="copy-btn" onclick="copyCode(this)">⎘ Copy</button>
+                            <code><span class="comment"># ROLE → CONTEXT → OBJECTIVE → CONSTRAINTS → AESTHETIC → PLANNING → OUTPUT → REFINEMENT</span>
+
+<span class="keyword">ROLE</span>
+You are a <span class="string">[expert role]</span>.
+
+<span class="keyword">CONTEXT</span>
+Product: <span class="string">[name]</span>
+Platform: <span class="string">[mobile/web]</span>
+Audience: <span class="string">[who]</span>
+
+<span class="keyword">OBJECTIVE</span>
+<span class="string">[One clear sentence of success]</span>
+Success criteria:
+- <span class="string">[criterion 1]</span>
+- <span class="string">[criterion 2]</span>
+
+<span class="keyword">CONSTRAINTS</span>
+- <span class="string">Mobile-first</span>
+- <span class="string">WCAG AA accessibility</span>
+- <span class="string">60fps animation budget</span>
+
+<span class="keyword">AESTHETIC</span>
+- <span class="string">[visual style keywords]</span>
+
+<span class="keyword">PLANNING</span>
+1. <span class="string">Define information architecture</span>
+2. <span class="string">Define layout and grid</span>
+3. <span class="string">Validate accessibility</span>
+
+<span class="keyword">OUTPUT FORMAT</span>
+Generate:
+1. <span class="string">[file type]</span>
+2. <span class="string">[instructions]</span>
+
+<span class="keyword">REFINEMENT</span>
+- Critique for clarity
+- Refine once for structure
+- Refine once for polish</code>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="template-grid">
+                <div class="template-card" onclick="copyTemplate('role')">
+                    <h4><span class="template-badge">01</span> Role Definition</h4>
+                    <p>Define AI expertise level and perspective</p>
+                </div>
+                <div class="template-card" onclick="copyTemplate('context')">
+                    <h4><span class="template-badge">02</span> Context Setup</h4>
+                    <p>Establish product, platform, audience</p>
+                </div>
+                <div class="template-card" onclick="copyTemplate('objective')">
+                    <h4><span class="template-badge">03</span> Objective</h4>
+                    <p>Clear success criteria definition</p>
+                </div>
+                <div class="template-card" onclick="copyTemplate('constraints')">
+                    <h4><span class="template-badge">04</span> Constraints</h4>
+                    <p>Quality guardrails and limits</p>
+                </div>
+            </div>
+            
+            <div class="checklist">
+                <div class="checklist-header">
+                    ☑ Quality Checklist — Architecture
+                </div>
+                <div class="checklist-items">
+                    <div class="checklist-item">Role defined — who is the AI acting as?</div>
+                    <div class="checklist-item">Goal clear — one sentence maximum</div>
+                    <div class="checklist-item">Success criteria stated explicitly</div>
+                    <div class="checklist-item">Constraints listed (accessibility, performance)</div>
+                    <div class="checklist-item">Output format requested</div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Animal Thinking Modes Section -->
+        <section id="modes">
+            <span class="section-label">03 // Thinking Modes</span>
+            <h2 class="section-title">Animal Thinking Modes</h2>
+            
+            <p class="fade-in" style="color: var(--silver); margin-bottom: 1.5rem;">
+                Click any mode to reveal its prompt template. Use copy button to grab the prompt.
             </p>
             
-            <div class="cta-group">
-                <a href="#installation" class="btn btn-primary hover-lift">
-                    <span>↑</span> Install Now
-                </a>
-                <a href="#architecture" class="btn btn-secondary hover-lift">
-                    <span>↓</span> Learn More
-                </a>
-            </div>
-        </section>
-        
-        <!-- Architecture Section -->
-        <section id="architecture">
-            <div class="section-header reveal">
-                <span class="section-label">01 // Core Framework</span>
-                <h2 class="section-title">8-Layer Prompt<br>Architecture</h2>
-            </div>
-            
-            <div class="architecture-grid reveal">
-                <div class="arch-layer">
-                    <div class="arch-number">01</div>
-                    <div class="arch-name">Role</div>
-                    <div class="arch-desc">Who the AI acts as — defines expertise level and perspective</div>
-                </div>
-                <div class="arch-layer">
-                    <div class="arch-number">02</div>
-                    <div class="arch-name">Context</div>
-                    <div class="arch-desc">Product, audience, platform — establishes the environment</div>
-                </div>
-                <div class="arch-layer">
-                    <div class="arch-number">03</div>
-                    <div class="arch-name">Objective</div>
-                    <div class="arch-desc">What success looks like — clear success criteria</div>
-                </div>
-                <div class="arch-layer">
-                    <div class="arch-number">04</div>
-                    <div class="arch-name">Constraints</div>
-                    <div class="arch-desc">Quality guardrails — accessibility, performance, limits</div>
-                </div>
-                <div class="arch-layer">
-                    <div class="arch-number">05</div>
-                    <div class="arch-name">Aesthetic</div>
-                    <div class="arch-desc">Design language, tone, visual style keywords</div>
-                </div>
-                <div class="arch-layer">
-                    <div class="arch-number">06</div>
-                    <div class="arch-name">Planning</div>
-                    <div class="arch-desc">Reason before generating — structural analysis</div>
-                </div>
-                <div class="arch-layer">
-                    <div class="arch-number">07</div>
-                    <div class="arch-name">Output</div>
-                    <div class="arch-desc">Exact format to deliver — file structure, type</div>
-                </div>
-                <div class="arch-layer">
-                    <div class="arch-number">08</div>
-                    <div class="arch-name">Refinement</div>
-                    <div class="arch-desc">Self-critique before final — iteration protocol</div>
-                </div>
-            </div>
-        </section>
-        
-        <!-- Animal Modes Section -->
-        <section id="modes">
-            <div class="section-header reveal">
-                <span class="section-label">02 // Thinking Modes</span>
-                <h2 class="section-title">Animal Thinking<br>Modes</h2>
-            </div>
-            
-            <div class="modes-grid reveal">
-                <div class="mode-card hover-lift">
+            <div class="mode-grid">
+                <div class="mode-card" onclick="toggleMode(this, 'rabbit')">
                     <span class="mode-emoji">🐇</span>
                     <div class="mode-name">Rabbit</div>
                     <div class="mode-desc">Multiply Ideas</div>
                 </div>
-                <div class="mode-card hover-lift">
+                <div class="mode-card" onclick="toggleMode(this, 'owl')">
                     <span class="mode-emoji">🦉</span>
                     <div class="mode-name">Owl</div>
                     <div class="mode-desc">Deep Analysis</div>
                 </div>
-                <div class="mode-card hover-lift">
+                <div class="mode-card" onclick="toggleMode(this, 'ant')">
                     <span class="mode-emoji">🐜</span>
                     <div class="mode-name">Ant</div>
                     <div class="mode-desc">Break Into Steps</div>
                 </div>
-                <div class="mode-card hover-lift">
+                <div class="mode-card" onclick="toggleMode(this, 'eagle')">
                     <span class="mode-emoji">🦅</span>
                     <div class="mode-name">Eagle</div>
                     <div class="mode-desc">Big Picture Strategy</div>
                 </div>
-                <div class="mode-card hover-lift">
+                <div class="mode-card" onclick="toggleMode(this, 'dolphin')">
                     <span class="mode-emoji">🐬</span>
                     <div class="mode-name">Dolphin</div>
                     <div class="mode-desc">Creative Solutions</div>
                 </div>
-                <div class="mode-card hover-lift">
+                <div class="mode-card" onclick="toggleMode(this, 'beaver')">
                     <span class="mode-emoji">🦫</span>
                     <div class="mode-name">Beaver</div>
                     <div class="mode-desc">Build Systems</div>
                 </div>
-                <div class="mode-card hover-lift">
+                <div class="mode-card" onclick="toggleMode(this, 'elephant')">
                     <span class="mode-emoji">🐘</span>
                     <div class="mode-name">Elephant</div>
                     <div class="mode-desc">Cross-Field Connections</div>
+                </div>
+            </div>
+            
+            <!-- Rabbit Mode Prompt -->
+            <div class="reveal-card fade-in" id="rabbit-prompt" style="display: none;">
+                <div class="reveal-header">
+                    <div class="reveal-title">
+                        <span class="reveal-icon"></span>
+                        🐇 Rabbit Mode — Multiply Ideas
+                    </div>
+                </div>
+                <div class="reveal-content">
+                    <div class="reveal-body">
+                        <div class="code-block">
+                            <button class="copy-btn" onclick="copyCode(this)">⎘ Copy</button>
+                            <code><span class="prompt">Take this idea and multiply it into 10 different variations.
+For each variation: change the angle, change the audience, change the format.
+Present the results as a list of distinct ideas.
+
+Idea: [YOUR IDEA HERE]</span></code>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Owl Mode Prompt -->
+            <div class="reveal-card fade-in" id="owl-prompt" style="display: none;">
+                <div class="reveal-header">
+                    <div class="reveal-title">
+                        <span class="reveal-icon"></span>
+                        🦉 Owl Mode — Deep Analysis
+                    </div>
+                </div>
+                <div class="reveal-content">
+                    <div class="reveal-body">
+                        <div class="code-block">
+                            <button class="copy-btn" onclick="copyCode(this)">⎘ Copy</button>
+                            <code><span class="prompt">Think like an owl — slow, observant and analytical.
+Examine this problem from multiple perspectives and identify
+the hidden factors most people overlook.
+
+Problem: [YOUR PROBLEM HERE]</span></code>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Ant Mode Prompt -->
+            <div class="reveal-card fade-in" id="ant-prompt" style="display: none;">
+                <div class="reveal-header">
+                    <div class="reveal-title">
+                        <span class="reveal-icon"></span>
+                        🐜 Ant Mode — Break Into Steps
+                    </div>
+                </div>
+                <div class="reveal-content">
+                    <div class="reveal-body">
+                        <div class="code-block">
+                            <button class="copy-btn" onclick="copyCode(this)">⎘ Copy</button>
+                            <code><span class="prompt">Think like an ant.
+Break this goal into the smallest possible steps someone could realistically complete.
+
+Goal: [YOUR GOAL HERE]</span></code>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Eagle Mode Prompt -->
+            <div class="reveal-card fade-in" id="eagle-prompt" style="display: none;">
+                <div class="reveal-header">
+                    <div class="reveal-title">
+                        <span class="reveal-icon"></span>
+                        🦅 Eagle Mode — Big Picture Strategy
+                    </div>
+                </div>
+                <div class="reveal-content">
+                    <div class="reveal-body">
+                        <div class="code-block">
+                            <button class="copy-btn" onclick="copyCode(this)">⎘ Copy</button>
+                            <code><span class="prompt">Think like an eagle flying high above the landscape.
+Explain the long-term strategy behind this idea and how the pieces connect.
+
+Concept: [YOUR CONCEPT HERE]</span></code>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Dolphin Mode Prompt -->
+            <div class="reveal-card fade-in" id="dolphin-prompt" style="display: none;">
+                <div class="reveal-header">
+                    <div class="reveal-title">
+                        <span class="reveal-icon"></span>
+                        🐬 Dolphin Mode — Creative Solutions
+                    </div>
+                </div>
+                <div class="reveal-content">
+                    <div class="reveal-body">
+                        <div class="code-block">
+                            <button class="copy-btn" onclick="copyCode(this)">⎘ Copy</button>
+                            <code><span class="prompt">Think like a dolphin — curious, playful and inventive.
+Generate creative solutions to this problem that most people wouldn't normally consider.
+
+Problem: [YOUR PROBLEM HERE]</span></code>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Beaver Mode Prompt -->
+            <div class="reveal-card fade-in" id="beaver-prompt" style="display: none;">
+                <div class="reveal-header">
+                    <div class="reveal-title">
+                        <span class="reveal-icon"></span>
+                        🦫 Beaver Mode — Build Systems
+                    </div>
+                </div>
+                <div class="reveal-content">
+                    <div class="reveal-body">
+                        <div class="code-block">
+                            <button class="copy-btn" onclick="copyCode(this)">⎘ Copy</button>
+                            <code><span class="prompt">Think like a beaver building a dam.
+Design a practical system that solves this problem step by step.
+
+Problem: [YOUR PROBLEM HERE]</span></code>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Elephant Mode Prompt -->
+            <div class="reveal-card fade-in" id="elephant-prompt" style="display: none;">
+                <div class="reveal-header">
+                    <div class="reveal-title">
+                        <span class="reveal-icon"></span>
+                        🐘 Elephant Mode — Cross-Field Connections
+                    </div>
+                </div>
+                <div class="reveal-content">
+                    <div class="reveal-body">
+                        <div class="code-block">
+                            <button class="copy-btn" onclick="copyCode(this)">⎘ Copy</button>
+                            <code><span class="prompt">Think like an elephant with a powerful memory.
+Connect this idea to insights from other fields such as
+psychology, economics, science or history.
+
+Idea: [YOUR IDEA HERE]</span></code>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="checklist">
+                <div class="checklist-header">
+                    ☑ Quality Checklist — Thinking Modes
+                </div>
+                <div class="checklist-items">
+                    <div class="checklist-item">Mode selected based on task type</div>
+                    <div class="checklist-item">Prompt copied and customized for specific context</div>
+                    <div class="checklist-item">Output evaluated against original goal</div>
+                    <div class="checklist-item">Modes chained if complex (e.g., Eagle → Beaver → Ant)</div>
                 </div>
             </div>
         </section>
         
         <!-- Design Vocabulary Section -->
         <section id="vocabulary">
-            <div class="section-header reveal">
-                <span class="section-label">03 // Design Language</span>
-                <h2 class="section-title">Design<br>Vocabulary</h2>
+            <span class="section-label">04 // Design Language</span>
+            <h2 class="section-title">Design Vocabulary</h2>
+            
+            <p class="fade-in" style="color: var(--silver); margin-bottom: 1.5rem;">
+                Use these exact terms in prompts to control visual output. Click to copy.
+            </p>
+            
+            <div class="vocab-tags fade-in">
+                <span class="vocab-tag" onclick="copyVocab('glassmorphism')">glassmorphism</span>
+                <span class="vocab-tag" onclick="copyVocab('brutalist ui')">brutalist ui</span>
+                <span class="vocab-tag" onclick="copyVocab('kinetic typography')">kinetic typography</span>
+                <span class="vocab-tag" onclick="copyVocab('bento grid')">bento grid</span>
+                <span class="vocab-tag" onclick="copyVocab('micro-interactions')">micro-interactions</span>
+                <span class="vocab-tag" onclick="copyVocab('neon accent')">neon accent</span>
+                <span class="vocab-tag" onclick="copyVocab('liquid gradient')">liquid gradient</span>
+                <span class="vocab-tag" onclick="copyVocab('dark-mode native')">dark-mode native</span>
+                <span class="vocab-tag" onclick="copyVocab('skeleton loading')">skeleton loading</span>
+                <span class="vocab-tag" onclick="copyVocab('ambient motion')">ambient motion</span>
+                <span class="vocab-tag" onclick="copyVocab('progressive disclosure')">progressive disclosure</span>
+                <span class="vocab-tag" onclick="copyVocab('editorial layout')">editorial layout</span>
             </div>
             
-            <div class="vocab-grid reveal">
-                <div class="vocab-item">
-                    <span class="vocab-term">glassmorphism</span>
-                    <span class="vocab-def">Frosted glass panels — translucent backdrop with blur</span>
+            <div class="reveal-card fade-in" onclick="this.classList.toggle('active')">
+                <div class="reveal-header">
+                    <div class="reveal-title">
+                        <span class="reveal-icon"></span>
+                        <span class="level-badge intermediate">Intermediate</span>
+                        Full Vocabulary Reference
+                    </div>
                 </div>
-                <div class="vocab-item">
-                    <span class="vocab-term">brutalist ui</span>
-                    <span class="vocab-def">Raw, oversized, high-contrast intentional roughness</span>
+                <div class="reveal-content">
+                    <div class="reveal-body">
+                        <div class="code-block">
+                            <button class="copy-btn" onclick="copyCode(this)">⎘ Copy</button>
+                            <code><span class="comment"># Design Vocabulary Reference</span>
+
+<span class="keyword">glassmorphism</span>     - Frosted glass panels, translucent backdrop
+<span class="keyword">brutalist ui</span>     - Raw, oversized, high-contrast, intentionally rough
+<span class="keyword">kinetic typography</span> - Text animates, morphs, reacts to scroll
+<span class="keyword">bento grid</span>       - Apple-style asymmetric card mosaic
+<span class="keyword">micro-interactions</span> - Tiny animations on hover, click, scroll
+<span class="keyword">neon accent</span>      - Single bright color pop against dark
+<span class="keyword">liquid gradient</span>   - Smooth, animated, shifting colors
+<span class="keyword">dark-mode native</span>   - Designed for dark first, light second
+<span class="keyword">skeleton loading</span>   - Placeholder shimmer before content
+<span class="keyword">ambient motion</span>     - Subtle, looping background animation</code>
+                        </div>
+                    </div>
                 </div>
-                <div class="vocab-item">
-                    <span class="vocab-term">kinetic typography</span>
-                    <span class="vocab-def">Text that animates, morphs, reacts to scroll</span>
+            </div>
+            
+            <div class="checklist">
+                <div class="checklist-header">
+                    ☑ Quality Checklist — Vocabulary
                 </div>
-                <div class="vocab-item">
-                    <span class="vocab-term">bento grid</span>
-                    <span class="vocab-def">Apple-style asymmetric card mosaic layout</span>
-                </div>
-                <div class="vocab-item">
-                    <span class="vocab-term">micro-interactions</span>
-                    <span class="vocab-def">Tiny animations on hover, click, scroll, focus</span>
-                </div>
-                <div class="vocab-item">
-                    <span class="vocab-term">neon accent</span>
-                    <span class="vocab-def">Single bright color pop against dark background</span>
-                </div>
-                <div class="vocab-item">
-                    <span class="vocab-term">liquid gradient</span>
-                    <span class="vocab-def">Smooth, animated, shifting background blends</span>
-                </div>
-                <div class="vocab-item">
-                    <span class="vocab-term">dark-mode native</span>
-                    <span class="vocab-def">Designed for dark first, light as secondary</span>
+                <div class="checklist-items">
+                    <div class="checklist-item">At least 3 aesthetic keywords used</div>
+                    <div class="checklist-item">Vocabulary matches target platform</div>
+                    <div class="checklist-item">Consistent design language throughout</div>
                 </div>
             </div>
         </section>
         
-        <!-- Installation Section -->
-        <section id="installation">
-            <div class="section-header reveal">
-                <span class="section-label">04 // Get Started</span>
-                <h2 class="section-title">Installation</h2>
+        <!-- Templates Section -->
+        <section id="templates">
+            <span class="section-label">05 // Ready to Use</span>
+            <h2 class="section-title">Prompt Templates</h2>
+            
+            <div class="template-grid">
+                <div class="template-card" onclick="copyTemplate('webapp')">
+                    <h4><span class="template-badge">Web</span> Web App Generator</h4>
+                    <p>Generate complete Next.js + Tailwind web applications</p>
+                </div>
+                <div class="template-card" onclick="copyTemplate('mobile')">
+                    <h4><span class="template-badge">Mobile</span> Mobile UI</h4>
+                    <p>React Native / Expo mobile app components</p>
+                </div>
+                <div class="template-card" onclick="copyTemplate('brand')">
+                    <h4><span class="template-badge">Brand</span> Brand System</h4>
+                    <p>Complete brand identity with colors, typography, motion</p>
+                </div>
+                <div class="template-card" onclick="copyTemplate('landing')">
+                    <h4><span class="template-badge">Mkt</span> Landing Page</h4>
+                    <p>High-conversion landing page with CTAs</p>
+                </div>
+                <div class="template-card" onclick="copyTemplate('dashboard')">
+                    <h4><span class="template-badge">Data</span> Dashboard</h4>
+                    <p>Analytics dashboard with charts and data viz</p>
+                </div>
+                <div class="template-card" onclick="copyTemplate('api')">
+                    <h4><span class="template-badge">Dev</span> API Design</h4>
+                    <p>REST/GraphQL API specification and documentation</p>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Workflows Section -->
+        <section id="workflows">
+            <span class="section-label">06 // Common Patterns</span>
+            <h2 class="section-title">Common Workflows</h2>
+            
+            <div class="reveal-card fade-in" onclick="this.classList.toggle('active')">
+                <div class="reveal-header">
+                    <div class="reveal-title">
+                        <span class="reveal-icon"></span>
+                        <span class="level-badge advanced">Advanced</span>
+                        Build AI Content System
+                    </div>
+                </div>
+                <div class="reveal-content">
+                    <div class="reveal-body">
+                        <p style="color: var(--silver); margin-bottom: 1rem;">
+                            Chain animal modes together for complex projects:
+                        </p>
+                        <div class="code-block">
+                            <button class="copy-btn" onclick="copyCode(this)">⎘ Copy</span></button>
+                            <code><span class="comment"># Mode Chain: 🦅 Eagle → 🦫 Beaver → 🐜 Ant</span>
+
+<span class="prompt">Step 1 (Eagle): Think like an eagle flying high above the landscape.
+Explain the long-term strategy for building an AI content system.
+
+Step 2 (Beaver): Think like a beaver building a dam.
+Design the system architecture step by step.
+
+Step 3 (Ant): Think like an ant.
+Break this into the smallest possible implementation steps.</span></code>
+                        </div>
+                    </div>
+                </div>
             </div>
             
-            <div class="install-steps reveal">
-                <div class="install-step">
-                    <div class="step-number">01</div>
-                    <div class="step-content">
-                        <h3>Quick Install</h3>
+            <div class="reveal-card fade-in" onclick="this.classList.toggle('active')">
+                <div class="reveal-header">
+                    <div class="reveal-title">
+                        <span class="reveal-icon"></span>
+                        <span class="level-badge advanced">Advanced</span>
+                        Solve Complex Problem
+                    </div>
+                </div>
+                <div class="reveal-content">
+                    <div class="reveal-body">
+                        <p style="color: var(--silver); margin-bottom: 1rem;">
+                            Combine analysis and creativity modes:
+                        </p>
                         <div class="code-block">
-                            <code>bash -c "$(curl -fsSL https://raw.githubusercontent.com/marktantongco/ai-visual-synthesis/main/install.sh)"</code>
+                            <button class="copy-btn" onclick="copyCode(this)">⎘ Copy</span></button>
+                            <code><span class="comment"># Mode Chain: 🦉 Owl → 🐬 Dolphin → 🐘 Elephant</span>
+
+<span class="prompt">Step 1 (Owl): Think like an owl — slow, observant and analytical.
+Examine this problem from multiple perspectives.
+
+Step 2 (Dolphin): Think like a dolphin — curious, playful and inventive.
+Generate creative solutions.
+
+Step 3 (Elephant): Think like an elephant with a powerful memory.
+Connect solutions to insights from other fields.</span></code>
                         </div>
                     </div>
                 </div>
-                
-                <div class="install-step">
-                    <div class="step-number">02</div>
-                    <div class="step-content">
-                        <h3>Manual Download</h3>
-                        <div class="code-block">
-                            <code>curl -sL "https://raw.githubusercontent.com/marktantongco/ai-visual-synthesis/main/SKILL.md" > SKILLS.md</code>
-                        </div>
-                    </div>
+            </div>
+            
+            <div class="checklist">
+                <div class="checklist-header">
+                    ☑ Quality Checklist — Workflows
                 </div>
-                
-                <div class="install-step">
-                    <div class="step-number">03</div>
-                    <div class="step-content">
-                        <h3>Add to AI Instructions</h3>
-                        <div class="code-block">
-                            <code>Read SKILLS.md and use the 8-Layer Prompt Architecture before generating UI or code.</code>
-                        </div>
-                    </div>
+                <div class="checklist-items">
+                    <div class="checklist-item">Modes chained in logical order</div>
+                    <div class="checklist-item">Each mode serves specific purpose</div>
+                    <div class="checklist-item">Output from one feeds into next</div>
                 </div>
             </div>
         </section>
         
         <!-- Resources Section -->
         <section id="resources">
-            <div class="section-header reveal">
-                <span class="section-label">05 // Resources</span>
-                <h2 class="section-title">Links &<br>References</h2>
-            </div>
+            <span class="section-label">07 // References</span>
+            <h2 class="section-title">Resources & Links</h2>
             
-            <div class="links-grid reveal">
+            <div class="links-grid">
                 <a href="https://github.com/marktantongco/ai-visual-synthesis" class="link-card" target="_blank">
-                    <h4>GitHub Repository</h4>
-                    <p>Source code and documentation</p>
+                    <h4>📦 GitHub Repository</h4>
+                    <p>Source code & full documentation</p>
+                </a>
+                <a href="https://raw.githubusercontent.com/marktantongco/ai-visual-synthesis/main/SKILL.md" class="link-card" target="_blank">
+                    <h4>📄 SKILL.md</h4>
+                    <p>Complete skill file for AI agents</p>
                 </a>
                 <a href="https://github.com/marktantongco/promptc" class="link-card" target="_blank">
-                    <h4>promptc OS</h4>
+                    <h4>🚀 promptc OS</h4>
                     <p>Main framework repository</p>
                 </a>
                 <a href="https://raw.githubusercontent.com/marktantongco/promptc/master/MASTER_REFERENCE.md" class="link-card" target="_blank">
-                    <h4>Master Reference</h4>
+                    <h4>📚 Master Reference</h4>
                     <p>Complete prompt engineering guide</p>
                 </a>
                 <a href="https://vercel.com" class="link-card" target="_blank">
-                    <h4>Deploy with Vercel</h4>
-                    <p>Free hosting for static sites</p>
+                    <h4>▲ Vercel</h4>
+                    <p>Free hosting for deployments</p>
                 </a>
+                <a href="https://github.com/marktantongco" class="link-card" target="_blank">
+                    <h4>👤 Author Profile</h4>
+                    <p>More projects & repositories</p>
+                </a>
+            </div>
+            
+            <div class="install-box fade-in" style="margin-top: 2rem;">
+                <p style="font-family: var(--font-mono); font-size: 0.8rem; color: var(--silver); margin-bottom: 0.75rem;">
+                    📋 Quick Reference — Add to your AI instructions:
+                </p>
+                <code style="color: var(--cyan);">Before generating code, read SKILLS.md and apply the 8-Layer Architecture.</code>
             </div>
         </section>
         
@@ -851,13 +1415,13 @@
         <footer>
             <div class="footer-content">
                 <div class="footer-brand">
-                    <span class="gradient">AI Visual Synthesis</span> // promptc OS v2.0
+                    <span>◈</span> AI Visual Synthesis // promptc OS v2.0
                 </div>
                 <div class="footer-links">
+                    <a href="#quickstart">Quick Start</a>
                     <a href="#architecture">Architecture</a>
                     <a href="#modes">Modes</a>
                     <a href="#vocabulary">Vocabulary</a>
-                    <a href="#installation">Install</a>
                     <a href="#resources">Resources</a>
                 </div>
             </div>
@@ -865,56 +1429,143 @@
     </main>
     
     <script>
-        // Scroll Reveal Animation
-        const revealElements = document.querySelectorAll('.reveal');
+        // Navigation scroll effect
+        const nav = document.getElementById('nav');
+        const sections = document.querySelectorAll('section');
+        const scrollDots = document.querySelectorAll('.scroll-dot');
         
-        const revealOnScroll = () => {
-            revealElements.forEach(el => {
-                const elementTop = el.getBoundingClientRect().top;
-                const windowHeight = window.innerHeight;
-                
-                if (elementTop < windowHeight - 100) {
-                    el.classList.add('visible');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                nav.classList.add('scrolled');
+            } else {
+                nav.classList.remove('scrolled');
+            }
+            
+            // Update active section
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                if (scrollY >= sectionTop - 200) {
+                    current = section.getAttribute('id');
                 }
             });
-        };
+            
+            scrollDots.forEach(dot => {
+                dot.classList.remove('active');
+                if (dot.dataset.section === current) {
+                    dot.classList.add('active');
+                }
+            });
+            
+            // Update nav links
+            document.querySelectorAll('.nav-links a').forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === '#' + current) {
+                    link.classList.add('active');
+                }
+            });
+        });
         
-        window.addEventListener('scroll', revealOnScroll);
-        window.addEventListener('load', revealOnScroll);
+        // Scroll to section on dot click
+        scrollDots.forEach(dot => {
+            dot.addEventListener('click', () => {
+                const section = document.getElementById(dot.dataset.section);
+                section.scrollIntoView({ behavior: 'smooth' });
+            });
+        });
         
-        // Smooth Scroll for Anchor Links
+        // Reveal card toggle
+        document.querySelectorAll('.reveal-card').forEach(card => {
+            card.addEventListener('click', (e) => {
+                if (!e.target.classList.contains('copy-btn')) {
+                    card.classList.toggle('active');
+                }
+            });
+        });
+        
+        // Animal mode toggle
+        function toggleMode(card, mode) {
+            document.querySelectorAll('.mode-card').forEach(c => c.classList.remove('active'));
+            card.classList.add('active');
+            
+            // Hide all prompts
+            document.querySelectorAll('[id$="-prompt"]').forEach(p => p.style.display = 'none');
+            document.querySelectorAll('.reveal-card').forEach(c => c.classList.remove('active'));
+            
+            // Show selected prompt
+            const prompt = document.getElementById(mode + '-prompt');
+            if (prompt) {
+                prompt.style.display = 'block';
+                prompt.classList.add('active');
+                prompt.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }
+        }
+        
+        // Copy code function
+        function copyCode(btn) {
+            const code = btn.parentElement.querySelector('code').innerText;
+            navigator.clipboard.writeText(code).then(() => {
+                btn.classList.add('copied');
+                btn.innerText = '✓ Copied';
+                setTimeout(() => {
+                    btn.classList.remove('copied');
+                    btn.innerText = '⎘ Copy';
+                }, 2000);
+            });
+        }
+        
+        // Copy vocabulary tag
+        function copyVocab(tag) {
+            navigator.clipboard.writeText(tag).then(() => {
+                // Show feedback
+                const event = new CustomEvent('copyFeedback', { detail: tag });
+                window.dispatchEvent(event);
+            });
+        }
+        
+        // Copy template
+        function copyTemplate(type) {
+            const templates = {
+                role: 'You are a [senior role] with [years] years of experience.',
+                context: 'Product: [name]\nPlatform: [mobile/web]\nAudience: [who]',
+                objective: 'Objective: [clear success statement]\nSuccess criteria:\n- [criterion 1]\n- [criterion 2]',
+                constraints: 'Constraints:\n- Mobile-first\n- WCAG AA accessibility\n- 60fps animation budget',
+                webapp: 'Generate a complete Next.js + Tailwind web app with:\n- 8-layer architecture\n- Gen-Z UI aesthetic\n- Framer Motion animations',
+                mobile: 'Generate React Native / Expo mobile components:\n- Mobile-first design\n- 44px touch targets\n- Dark-mode native',
+                brand: 'Create brand system:\n- Color palette\n- Typography scale\n- Motion guidelines\n- Tone of voice',
+                landing: 'Create high-conversion landing page:\n- Hero section\n- Features\n- Social proof\n- CTA sections',
+                dashboard: 'Design analytics dashboard:\n- Charts and data viz\n- Responsive grid\n- Dark-mode native',
+                api: 'Design API specification:\n- REST/GraphQL endpoints\n- Request/response schemas\n- Authentication'
+            };
+            
+            navigator.clipboard.writeText(templates[type] || '').then(() => {
+                alert('Template copied to clipboard!');
+            });
+        }
+        
+        // Fade in animation on scroll
+        const fadeElements = document.querySelectorAll('.fade-in');
+        
+        const fadeObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
+        
+        fadeElements.forEach(el => fadeObserver.observe(el));
+        
+        // Smooth scroll for nav links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
                 e.preventDefault();
                 const target = document.querySelector(this.getAttribute('href'));
                 if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
+                    target.scrollIntoView({ behavior: 'smooth' });
                 }
             });
         });
-        
-        // Add parallax effect to grid background
-        const gridBg = document.querySelector('.grid-bg');
-        
-        document.addEventListener('mousemove', (e) => {
-            const x = (e.clientX / window.innerWidth - 0.5) * 20;
-            const y = (e.clientY / window.innerHeight - 0.5) * 20;
-            gridBg.style.transform = `translate(${x}px, ${y}px)`;
-        });
-        
-        // Kinetic text marquee
-        const kineticText = document.querySelector('.kinetic-text');
-        if (kineticText) {
-            kineticText.addEventListener('mouseenter', () => {
-                kineticText.style.animationPlayState = 'paused';
-            });
-            kineticText.addEventListener('mouseleave', () => {
-                kineticText.style.animationPlayState = 'running';
-            });
-        }
     </script>
 </body>
 </html>
