@@ -9,18 +9,39 @@ Complete framework for AI-powered visual generation, UI/UX design, and prompt en
 
 ## 🎯 Quick Start
 
-### 1. Install the Master Reference
+### 1. Install via CLI (Recommended)
 ```bash
-# Download the latest promptc framework
-curl -sL "https://raw.githubusercontent.com/marktantongco/promptc/master/MASTER_REFERENCE.md" > SKILLS.md
+# One-line installation
+bash -c "$(curl -fsSL https://raw.githubusercontent.com/marktantongco/agents-skills/master/skills/ai-visual-synthesis/install.sh)"
 ```
 
-### 2. Add to AI Instructions
-> "Before generating UI or architectural code, read `SKILLS.md` and use the 8-Layer Prompt Architecture."
+### 2. Manual Installation
+```bash
+# Download the master reference
+curl -sL "https://raw.githubusercontent.com/marktantongco/promptc/master/MASTER_REFERENCE.md" > SKILLS.md
+
+# Add to AI instructions
+echo "Read SKILLS.md and use the 8-Layer Prompt Architecture" >> .cursorrules
+```
 
 ### 3. Direct Access
 - **Main Framework**: `https://ai-visual-synthesis.vercel.app/`
-- **Eagle Mode**: `https://ai-visual-synthesis.vercel.app/?view=eagle-mode`
+- **GitHub Pages**: `https://marktantongco.github.io/agents-skills/`
+- **GitHub Repo**: `https://github.com/marktantongco/agents-skills`
+- **Raw SKILL.md**: `https://raw.githubusercontent.com/marktantongco/agents-skills/master/skills/ai-visual-synthesis/SKILL.md`
+
+### 4. Vercel Deployment
+```bash
+# Deploy to Vercel
+npm i -g vercel
+vercel --prod
+```
+
+**Vercel Environment Variables:**
+```env
+VERCEL_URL=https://ai-visual-synthesis.vercel.app
+NEXT_PUBLIC_SITE_URL=https://ai-visual-synthesis.vercel.app
+```
 
 ---
 
@@ -286,12 +307,30 @@ QUALITY
 
 ---
 
-## 🔗 Resources
+## 🔗 Resources & Sitemap
 
+### Primary Links
+- **Main Site**: `https://ai-visual-synthesis.vercel.app/`
+- **GitHub Pages**: `https://marktantongco.github.io/agents-skills/`
+- **GitHub Repo**: `https://github.com/marktantongco/agents-skills`
+- **Raw SKILL.md**: `https://raw.githubusercontent.com/marktantongco/agents-skills/master/skills/ai-visual-synthesis/SKILL.md`
+
+### Framework Resources
+- **promptc OS**: `https://github.com/marktantongco/promptc`
 - **Master Reference**: `https://raw.githubusercontent.com/marktantongco/promptc/master/MASTER_REFERENCE.md`
-- **Main Framework**: `https://ai-visual-synthesis.vercel.app/`
-- **GitHub**: `https://github.com/marktantongco/promptc`
-- **Documentation**: `https://promptc.dev`
+- **Design Vocabulary**: `https://marktantongco.github.io/agents-skills/#vocabulary`
+- **Animal Modes**: `https://marktantongco.github.io/agents-skills/#modes`
+
+### API Endpoints
+```
+GET  https://api.github.com/repos/marktantongco/agents-skills/contents/skills/ai-visual-synthesis/SKILL.md
+GET  https://raw.githubusercontent.com/marktantongco/agents-skills/master/skills/ai-visual-synthesis/README.md
+```
+
+### SEO & AI Search Optimization
+**Meta Keywords:** `ai visual synthesis`, `prompt engineering`, `gen-z ui`, `brutalist design`, `kinetic typography`, `8-layer architecture`
+
+**Structured Data:** JSON-LD schema for SoftwareSourceCode deployed on Vercel and GitHub Pages
 
 ---
 
