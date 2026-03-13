@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="AI Visual Synthesis - Complete prompt engineering guide with 8-layer architecture, animal thinking modes, and design vocabulary">
-    <meta name="keywords" content="ai visual synthesis, prompt engineering, gen-z ui, brutalist design, 8-layer architecture, animal thinking modes, prompt templates, quality checklist, kinetic typography">
+    <meta name="description" content="AI Visual Synthesis - Complete prompt engineering guide with 8-layer architecture, animal thinking modes, design vocabulary, and workflows">
+    <meta name="keywords" content="ai visual synthesis, prompt engineering, gen-z ui, brutalist design, 8-layer architecture, animal thinking modes, prompt templates, quality checklist, kinetic typography, design combos, typography, infographic">
     <meta name="author" content="promptc OS">
     <meta name="theme-color" content="#0B0D10">
     <meta name="robots" content="index, follow">
     
     <meta property="og:title" content="AI Visual Synthesis - Complete Prompt Engineering Guide">
-    <meta property="og:description" content="Master prompt engineering with 8-layer architecture, animal thinking modes, and design vocabulary">
+    <meta property="og:description" content="Master prompt engineering with 8-layer architecture, animal thinking modes, design vocabulary">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://ai-visual-synthesis.vercel.app">
     <meta property="og:site_name" content="AI Visual Synthesis">
@@ -23,7 +23,7 @@
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Syne:wght@400;500;600;700;800&family=Clash+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
     
     <style>
         :root {
@@ -37,8 +37,10 @@
             --magenta: #FF00FF;
             --neon-green: #39FF14;
             --warning: #FFB000;
+            --purple: #8B5CF6;
+            --orange: #FF6B35;
             
-            --font-display: 'Space Grotesk', sans-serif;
+            --font-display: 'Space Grotesk', 'Syne', 'Clash Display', sans-serif;
             --font-mono: 'JetBrains Mono', monospace;
             
             --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
@@ -183,6 +185,7 @@
         .nav-btn.primary:hover {
             background: var(--magenta);
             border-color: var(--magenta);
+            color: var(--white);
         }
         
         /* Main Container */
@@ -310,6 +313,11 @@
             border-color: var(--cyan);
         }
         
+        .reveal-card.active {
+            border-color: var(--magenta);
+            box-shadow: 0 0 30px rgba(255, 0, 255, 0.1);
+        }
+        
         .reveal-header {
             padding: 1.5rem;
             cursor: pointer;
@@ -317,6 +325,7 @@
             justify-content: space-between;
             align-items: center;
             user-select: none;
+            transition: background 0.2s;
         }
         
         .reveal-header:hover {
@@ -344,6 +353,7 @@
             justify-content: center;
             transition: all 0.3s var(--ease-out-expo);
             flex-shrink: 0;
+            position: relative;
         }
         
         .reveal-icon::after {
@@ -351,6 +361,7 @@
             font-size: 1rem;
             color: var(--cyan);
             transition: transform 0.3s var(--ease-out-expo);
+            position: absolute;
         }
         
         .reveal-card.active .reveal-icon {
@@ -371,7 +382,7 @@
         }
         
         .reveal-card.active .reveal-content {
-            max-height: 1000px;
+            max-height: 3000px;
         }
         
         .reveal-body {
@@ -417,6 +428,7 @@
             display: flex;
             align-items: center;
             gap: 0.4rem;
+            z-index: 10;
         }
         
         .copy-btn:hover {
@@ -432,7 +444,7 @@
         /* Animal Mode Cards */
         .mode-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
             gap: 1rem;
             margin: 2rem 0;
         }
@@ -440,7 +452,7 @@
         .mode-card {
             background: var(--charcoal);
             border: 1px solid var(--steel);
-            padding: 1.5rem;
+            padding: 1.25rem;
             text-align: center;
             cursor: pointer;
             transition: all 0.3s var(--ease-out-expo);
@@ -476,14 +488,14 @@
         }
         
         .mode-emoji {
-            font-size: 2.5rem;
-            margin-bottom: 0.75rem;
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
             display: block;
         }
         
         .mode-name {
             font-family: var(--font-mono);
-            font-size: 0.8rem;
+            font-size: 0.75rem;
             font-weight: 600;
             text-transform: uppercase;
             letter-spacing: 0.1em;
@@ -491,7 +503,345 @@
         }
         
         .mode-desc {
+            font-size: 0.7rem;
+            color: var(--silver);
+        }
+        
+        /* Chained Examples */
+        .chained-examples {
+            margin-top: 2rem;
+        }
+        
+        .chained-example {
+            background: var(--charcoal);
+            border: 1px solid var(--steel);
+            margin-bottom: 1rem;
+            overflow: hidden;
+        }
+        
+        .chained-header {
+            padding: 1rem 1.5rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background 0.2s;
+        }
+        
+        .chained-header:hover {
+            background: rgba(0, 255, 255, 0.05);
+        }
+        
+        .chained-title {
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+        
+        .chained-arrow {
+            color: var(--cyan);
+            font-size: 1.2rem;
+        }
+        
+        .chained-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s var(--ease-out-expo);
+        }
+        
+        .chained-example.active .chained-content {
+            max-height: 1000px;
+        }
+        
+        .chained-body {
+            padding: 0 1.5rem 1.5rem;
+            border-top: 1px solid var(--steel);
+        }
+        
+        /* Vocabulary Tags */
+        .vocab-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin: 1rem 0;
+        }
+        
+        .vocab-tag {
+            padding: 0.5rem 1rem;
+            background: var(--charcoal);
+            border: 1px solid var(--steel);
+            font-family: var(--font-mono);
             font-size: 0.75rem;
+            cursor: pointer;
+            transition: all 0.2s var(--ease-out-expo);
+            position: relative;
+        }
+        
+        .vocab-tag:hover {
+            border-color: var(--cyan);
+            color: var(--cyan);
+            transform: translateY(-2px);
+        }
+        
+        .vocab-tag.active {
+            border-color: var(--magenta);
+            background: rgba(255, 0, 255, 0.1);
+        }
+        
+        /* Design Combo Cards */
+        .combo-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+        
+        .combo-card {
+            background: var(--charcoal);
+            border: 1px solid var(--steel);
+            padding: 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s var(--ease-out-expo);
+        }
+        
+        .combo-card:hover {
+            border-color: var(--cyan);
+            transform: translateY(-4px);
+            box-shadow: 0 10px 40px rgba(0, 255, 255, 0.1);
+        }
+        
+        .combo-card.active {
+            border-color: var(--magenta);
+            box-shadow: 0 0 30px rgba(255, 0, 255, 0.2);
+        }
+        
+        .combo-title {
+            font-family: var(--font-mono);
+            font-size: 0.9rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .combo-subtitle {
+            font-size: 0.8rem;
+            color: var(--silver);
+            margin-bottom: 1rem;
+        }
+        
+        .combo-elements {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .combo-element {
+            padding: 0.25rem 0.75rem;
+            background: var(--void-black);
+            border: 1px solid var(--steel);
+            font-family: var(--font-mono);
+            font-size: 0.7rem;
+            color: var(--cyan);
+        }
+        
+        .combo-psychology {
+            font-size: 0.8rem;
+            color: var(--silver);
+            padding-top: 1rem;
+            border-top: 1px solid var(--steel);
+        }
+        
+        .combo-psychology strong {
+            color: var(--warning);
+        }
+        
+        /* Typography Combo */
+        .typo-combo {
+            background: var(--charcoal);
+            border: 1px solid var(--steel);
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            cursor: pointer;
+            transition: all 0.3s var(--ease-out-expo);
+        }
+        
+        .typo-combo:hover {
+            border-color: var(--cyan);
+        }
+        
+        .typo-combo.active {
+            border-color: var(--magenta);
+            background: rgba(255, 0, 255, 0.05);
+        }
+        
+        .typo-preview {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(135deg, var(--cyan), var(--magenta));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .typo-name {
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            color: var(--cyan);
+            margin-bottom: 0.5rem;
+        }
+        
+        .typo-use {
+            font-size: 0.8rem;
+            color: var(--silver);
+        }
+        
+        /* Template Grid */
+        .template-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+        
+        .template-card {
+            background: var(--charcoal);
+            border: 1px solid var(--steel);
+            padding: 1.5rem;
+            transition: all 0.3s var(--ease-out-expo);
+            cursor: pointer;
+        }
+        
+        .template-card:hover {
+            border-color: var(--cyan);
+            transform: translateY(-4px);
+            box-shadow: 0 10px 40px rgba(0, 255, 255, 0.1);
+        }
+        
+        .template-card.active {
+            border-color: var(--magenta);
+        }
+        
+        .template-card h4 {
+            font-family: var(--font-mono);
+            font-size: 0.875rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .template-card p {
+            font-size: 0.875rem;
+            color: var(--silver);
+        }
+        
+        .template-badge {
+            font-size: 0.65rem;
+            padding: 0.2rem 0.5rem;
+            background: var(--cyan);
+            color: var(--void-black);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        
+        /* Workflow Cards */
+        .workflow-grid {
+            display: grid;
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+        
+        .workflow-card {
+            background: var(--charcoal);
+            border: 1px solid var(--steel);
+            overflow: hidden;
+        }
+        
+        .workflow-header {
+            padding: 1.5rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background 0.2s;
+        }
+        
+        .workflow-header:hover {
+            background: rgba(0, 255, 255, 0.05);
+        }
+        
+        .workflow-header.active {
+            background: rgba(255, 0, 255, 0.1);
+            border-bottom: 1px solid var(--magenta);
+        }
+        
+        .workflow-title {
+            font-family: var(--font-mono);
+            font-size: 0.9rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+        
+        .workflow-chain {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.75rem;
+            color: var(--cyan);
+        }
+        
+        .workflow-chain-arrow {
+            color: var(--silver);
+        }
+        
+        .workflow-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s var(--ease-out-expo);
+        }
+        
+        .workflow-card.active .workflow-content {
+            max-height: 2000px;
+        }
+        
+        .workflow-body {
+            padding: 0 1.5rem 1.5rem;
+        }
+        
+        .workflow-usecase {
+            background: var(--void-black);
+            border-left: 3px solid var(--cyan);
+            padding: 1rem;
+            margin-bottom: 1rem;
+        }
+        
+        .workflow-usecase-title {
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            color: var(--cyan);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 0.5rem;
+        }
+        
+        .workflow-usecase p {
+            font-size: 0.85rem;
             color: var(--silver);
         }
         
@@ -536,81 +886,10 @@
             flex-shrink: 0;
         }
         
-        /* Template Grid */
-        .template-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 1.5rem;
-            margin: 2rem 0;
-        }
-        
-        .template-card {
-            background: var(--charcoal);
-            border: 1px solid var(--steel);
-            padding: 1.5rem;
-            transition: all 0.3s var(--ease-out-expo);
-            cursor: pointer;
-        }
-        
-        .template-card:hover {
-            border-color: var(--cyan);
-            transform: translateY(-4px);
-            box-shadow: 0 10px 40px rgba(0, 255, 255, 0.1);
-        }
-        
-        .template-card h4 {
-            font-family: var(--font-mono);
-            font-size: 0.875rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            margin-bottom: 0.5rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-        
-        .template-card p {
-            font-size: 0.875rem;
-            color: var(--silver);
-        }
-        
-        .template-badge {
-            font-size: 0.65rem;
-            padding: 0.2rem 0.5rem;
-            background: var(--cyan);
-            color: var(--void-black);
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-        }
-        
-        /* Vocabulary Tags */
-        .vocab-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-            margin: 1rem 0;
-        }
-        
-        .vocab-tag {
-            padding: 0.5rem 1rem;
-            background: var(--charcoal);
-            border: 1px solid var(--steel);
-            font-family: var(--font-mono);
-            font-size: 0.75rem;
-            cursor: pointer;
-            transition: all 0.2s var(--ease-out-expo);
-        }
-        
-        .vocab-tag:hover {
-            border-color: var(--cyan);
-            color: var(--cyan);
-        }
-        
         /* Links Grid */
         .links-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 1rem;
             margin: 2rem 0;
         }
@@ -699,7 +978,7 @@
             transform: translateY(0);
         }
         
-        /* Scroll Snap Indicators */
+        /* Scroll Indicators */
         .scroll-indicators {
             position: fixed;
             right: 2rem;
@@ -754,7 +1033,8 @@
             
             .template-grid,
             .mode-grid,
-            .links-grid {
+            .links-grid,
+            .combo-grid {
                 grid-template-columns: 1fr;
             }
         }
@@ -805,6 +1085,7 @@
             <li><a href="#architecture">Architecture</a></li>
             <li><a href="#modes">Thinking Modes</a></li>
             <li><a href="#vocabulary">Vocabulary</a></li>
+            <li><a href="#typography">Typography</a></li>
             <li><a href="#templates">Templates</a></li>
             <li><a href="#workflows">Workflows</a></li>
             <li><a href="#resources">Resources</a></li>
@@ -822,6 +1103,7 @@
         <div class="scroll-dot" data-section="architecture"></div>
         <div class="scroll-dot" data-section="modes"></div>
         <div class="scroll-dot" data-section="vocabulary"></div>
+        <div class="scroll-dot" data-section="typography"></div>
         <div class="scroll-dot" data-section="templates"></div>
         <div class="scroll-dot" data-section="workflows"></div>
         <div class="scroll-dot" data-section="resources"></div>
@@ -839,7 +1121,7 @@
             </h1>
             <p>
                 Complete prompt engineering guide with 8-layer architecture, animal thinking modes, 
-                design vocabulary, and quality checklists. Built for speed and clarity.
+                design vocabulary, typography combos, and common workflows.
             </p>
             <div class="hero-cta">
                 <a href="#quickstart" class="nav-btn primary" style="padding: 1rem 2rem;">↑ Get Started</a>
@@ -856,8 +1138,8 @@
                 <code>bash -c "$(curl -fsSL https://raw.githubusercontent.com/marktantongco/ai-visual-synthesis/main/install.sh)"</code>
             </div>
             
-            <div class="reveal-card fade-in" onclick="this.classList.toggle('active')">
-                <div class="reveal-header">
+            <div class="reveal-card fade-in" data-card="manual">
+                <div class="reveal-header" onclick="toggleReveal(this)">
                     <div class="reveal-title">
                         <span class="reveal-icon"></span>
                         Manual Installation
@@ -898,8 +1180,8 @@ echo "Read SKILLS.md and use 8-Layer Architecture" >> .cursorrules</code>
             <span class="section-label">02 // Core Framework</span>
             <h2 class="section-title">8-Layer Prompt Architecture</h2>
             
-            <div class="reveal-card fade-in" onclick="this.classList.toggle('active')">
-                <div class="reveal-header">
+            <div class="reveal-card fade-in" data-card="arch-template">
+                <div class="reveal-header" onclick="toggleReveal(this)">
                     <div class="reveal-title">
                         <span class="reveal-icon"></span>
                         <span class="level-badge foundational">Foundational</span>
@@ -953,29 +1235,8 @@ Generate:
                 </div>
             </div>
             
-            <div class="template-grid">
-                <div class="template-card" onclick="copyTemplate('role')">
-                    <h4><span class="template-badge">01</span> Role Definition</h4>
-                    <p>Define AI expertise level and perspective</p>
-                </div>
-                <div class="template-card" onclick="copyTemplate('context')">
-                    <h4><span class="template-badge">02</span> Context Setup</h4>
-                    <p>Establish product, platform, audience</p>
-                </div>
-                <div class="template-card" onclick="copyTemplate('objective')">
-                    <h4><span class="template-badge">03</span> Objective</h4>
-                    <p>Clear success criteria definition</p>
-                </div>
-                <div class="template-card" onclick="copyTemplate('constraints')">
-                    <h4><span class="template-badge">04</span> Constraints</h4>
-                    <p>Quality guardrails and limits</p>
-                </div>
-            </div>
-            
             <div class="checklist">
-                <div class="checklist-header">
-                    ☑ Quality Checklist — Architecture
-                </div>
+                <div class="checklist-header">☑ Quality Checklist — Architecture</div>
                 <div class="checklist-items">
                     <div class="checklist-item">Role defined — who is the AI acting as?</div>
                     <div class="checklist-item">Goal clear — one sentence maximum</div>
@@ -996,202 +1257,228 @@ Generate:
             </p>
             
             <div class="mode-grid">
-                <div class="mode-card" onclick="toggleMode(this, 'rabbit')">
+                <div class="mode-card" data-mode="rabbit" onclick="toggleMode('rabbit')">
                     <span class="mode-emoji">🐇</span>
                     <div class="mode-name">Rabbit</div>
                     <div class="mode-desc">Multiply Ideas</div>
                 </div>
-                <div class="mode-card" onclick="toggleMode(this, 'owl')">
+                <div class="mode-card" data-mode="owl" onclick="toggleMode('owl')">
                     <span class="mode-emoji">🦉</span>
                     <div class="mode-name">Owl</div>
                     <div class="mode-desc">Deep Analysis</div>
                 </div>
-                <div class="mode-card" onclick="toggleMode(this, 'ant')">
+                <div class="mode-card" data-mode="ant" onclick="toggleMode('ant')">
                     <span class="mode-emoji">🐜</span>
                     <div class="mode-name">Ant</div>
                     <div class="mode-desc">Break Into Steps</div>
                 </div>
-                <div class="mode-card" onclick="toggleMode(this, 'eagle')">
+                <div class="mode-card" data-mode="eagle" onclick="toggleMode('eagle')">
                     <span class="mode-emoji">🦅</span>
                     <div class="mode-name">Eagle</div>
                     <div class="mode-desc">Big Picture Strategy</div>
                 </div>
-                <div class="mode-card" onclick="toggleMode(this, 'dolphin')">
+                <div class="mode-card" data-mode="dolphin" onclick="toggleMode('dolphin')">
                     <span class="mode-emoji">🐬</span>
                     <div class="mode-name">Dolphin</div>
                     <div class="mode-desc">Creative Solutions</div>
                 </div>
-                <div class="mode-card" onclick="toggleMode(this, 'beaver')">
+                <div class="mode-card" data-mode="beaver" onclick="toggleMode('beaver')">
                     <span class="mode-emoji">🦫</span>
                     <div class="mode-name">Beaver</div>
                     <div class="mode-desc">Build Systems</div>
                 </div>
-                <div class="mode-card" onclick="toggleMode(this, 'elephant')">
+                <div class="mode-card" data-mode="elephant" onclick="toggleMode('elephant')">
                     <span class="mode-emoji">🐘</span>
                     <div class="mode-name">Elephant</div>
                     <div class="mode-desc">Cross-Field Connections</div>
                 </div>
             </div>
             
-            <!-- Rabbit Mode Prompt -->
-            <div class="reveal-card fade-in" id="rabbit-prompt" style="display: none;">
-                <div class="reveal-header">
-                    <div class="reveal-title">
-                        <span class="reveal-icon"></span>
-                        🐇 Rabbit Mode — Multiply Ideas
+            <!-- Mode Prompts Container -->
+            <div id="mode-prompts"></div>
+            
+            <!-- Chained Examples -->
+            <div class="chained-examples">
+                <h3 style="font-family: var(--font-mono); font-size: 1rem; color: var(--cyan); margin-bottom: 1rem; text-transform: uppercase; letter-spacing: 0.1em;">
+                    Top 5 Recommended Mode Chains
+                </h3>
+                
+                <div class="chained-example" data-chain="content-system">
+                    <div class="chained-header" onclick="toggleChained(this)">
+                        <div class="chained-title">
+                            🦅 Eagle → 🦫 Beaver → 🐜 Ant
+                            <span class="level-badge advanced">Build AI Content System</span>
+                        </div>
+                        <span class="chained-arrow">▶</span>
                     </div>
-                </div>
-                <div class="reveal-content">
-                    <div class="reveal-body">
-                        <div class="code-block">
-                            <button class="copy-btn" onclick="copyCode(this)">⎘ Copy</button>
-                            <code><span class="prompt">Take this idea and multiply it into 10 different variations.
-For each variation: change the angle, change the audience, change the format.
-Present the results as a list of distinct ideas.
+                    <div class="chained-content">
+                        <div class="chained-body">
+                            <div class="code-block">
+                                <button class="copy-btn" onclick="copyCode(this)">⎘ Copy</button>
+                                <code><span class="comment"># Build AI Content System</span>
 
-Idea: [YOUR IDEA HERE]</span></code>
+<span class="prompt">Step 1 (Eagle): Think like an eagle flying high above the landscape.
+Explain the long-term strategy for building an AI content system.
+What are the core components? How do they connect?
+
+Step 2 (Beaver): Think like a beaver building a dam.
+Design the system architecture step by step.
+Create modular components for content generation, storage, and delivery.
+
+Step 3 (Ant): Think like an ant.
+Break this into the smallest possible implementation steps.
+Each step should be completable in one session.</span></code>
+                            </div>
+                            <div class="workflow-usecase">
+                                <div class="workflow-usecase-title">Best Use-Case</div>
+                                <p>Building automated content pipelines, AI-powered blogs, or content generation systems that require strategic planning followed by systematic implementation.</p>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            
-            <!-- Owl Mode Prompt -->
-            <div class="reveal-card fade-in" id="owl-prompt" style="display: none;">
-                <div class="reveal-header">
-                    <div class="reveal-title">
-                        <span class="reveal-icon"></span>
-                        🦉 Owl Mode — Deep Analysis
+                
+                <div class="chained-example" data-chain="complex-problem">
+                    <div class="chained-header" onclick="toggleChained(this)">
+                        <div class="chained-title">
+                            🦉 Owl → 🐬 Dolphin → 🐘 Elephant
+                            <span class="level-badge advanced">Solve Complex Problem</span>
+                        </div>
+                        <span class="chained-arrow">▶</span>
                     </div>
-                </div>
-                <div class="reveal-content">
-                    <div class="reveal-body">
-                        <div class="code-block">
-                            <button class="copy-btn" onclick="copyCode(this)">⎘ Copy</button>
-                            <code><span class="prompt">Think like an owl — slow, observant and analytical.
-Examine this problem from multiple perspectives and identify
-the hidden factors most people overlook.
+                    <div class="chained-content">
+                        <div class="chained-body">
+                            <div class="code-block">
+                                <button class="copy-btn" onclick="copyCode(this)">⎘ Copy</button>
+                                <code><span class="comment"># Solve Complex Problem</span>
 
-Problem: [YOUR PROBLEM HERE]</span></code>
+<span class="prompt">Step 1 (Owl): Think like an owl — slow, observant and analytical.
+Examine this problem from multiple perspectives.
+Identify hidden factors most people overlook.
+
+Step 2 (Dolphin): Think like a dolphin — curious, playful and inventive.
+Generate creative solutions that most people wouldn't consider.
+Think outside conventional approaches.
+
+Step 3 (Elephant): Think like an elephant with a powerful memory.
+Connect solutions to insights from psychology, economics, science, or history.
+Find analogies and patterns from other fields.</span></code>
+                            </div>
+                            <div class="workflow-usecase">
+                                <div class="workflow-usecase-title">Best Use-Case</div>
+                                <p>Innovative product design, breakthrough feature ideas, or solving entrenched problems that require both analytical depth and creative thinking.</p>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            
-            <!-- Ant Mode Prompt -->
-            <div class="reveal-card fade-in" id="ant-prompt" style="display: none;">
-                <div class="reveal-header">
-                    <div class="reveal-title">
-                        <span class="reveal-icon"></span>
-                        🐜 Ant Mode — Break Into Steps
+                
+                <div class="chained-example" data-chain="brainstorm">
+                    <div class="chained-header" onclick="toggleChained(this)">
+                        <div class="chained-title">
+                            🐇 Rabbit → 🦅 Eagle → 🐜 Ant
+                            <span class="level-badge intermediate">Brainstorm Channel/Product</span>
+                        </div>
+                        <span class="chained-arrow">▶</span>
                     </div>
-                </div>
-                <div class="reveal-content">
-                    <div class="reveal-body">
-                        <div class="code-block">
-                            <button class="copy-btn" onclick="copyCode(this)">⎘ Copy</button>
-                            <code><span class="prompt">Think like an ant.
-Break this goal into the smallest possible steps someone could realistically complete.
+                    <div class="chained-content">
+                        <div class="chained-body">
+                            <div class="code-block">
+                                <button class="copy-btn" onclick="copyCode(this)">⎘ Copy</button>
+                                <code><span class="comment"># Brainstorm Channel or Product</span>
 
-Goal: [YOUR GOAL HERE]</span></code>
+<span class="prompt">Step 1 (Rabbit): Multiply this idea into 10 different variations.
+Change the angle, change the audience, change the format.
+
+Step 2 (Eagle): Think like an eagle flying high above the landscape.
+Identify which variations have the strongest long-term potential.
+Analyze market fit and scalability.
+
+Step 3 (Ant): Break your chosen direction into actionable steps.
+What needs to happen first? What's the MVP?</span></code>
+                            </div>
+                            <div class="workflow-usecase">
+                                <div class="workflow-usecase-title">Best Use-Case</div>
+                                <p>New product ideation, marketing channel selection, or exploring different business model variations before committing to a direction.</p>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            
-            <!-- Eagle Mode Prompt -->
-            <div class="reveal-card fade-in" id="eagle-prompt" style="display: none;">
-                <div class="reveal-header">
-                    <div class="reveal-title">
-                        <span class="reveal-icon"></span>
-                        🦅 Eagle Mode — Big Picture Strategy
-                    </div>
-                </div>
-                <div class="reveal-content">
-                    <div class="reveal-body">
-                        <div class="code-block">
-                            <button class="copy-btn" onclick="copyCode(this)">⎘ Copy</button>
-                            <code><span class="prompt">Think like an eagle flying high above the landscape.
-Explain the long-term strategy behind this idea and how the pieces connect.
-
-Concept: [YOUR CONCEPT HERE]</span></code>
+                
+                <div class="chained-example" data-chain="workflow">
+                    <div class="chained-header" onclick="toggleChained(this)">
+                        <div class="chained-title">
+                            🦫 Beaver → 🐜 Ant → 🦉 Owl
+                            <span class="level-badge intermediate">Design Workflow/Automation</span>
                         </div>
+                        <span class="chained-arrow">▶</span>
                     </div>
-                </div>
-            </div>
-            
-            <!-- Dolphin Mode Prompt -->
-            <div class="reveal-card fade-in" id="dolphin-prompt" style="display: none;">
-                <div class="reveal-header">
-                    <div class="reveal-title">
-                        <span class="reveal-icon"></span>
-                        🐬 Dolphin Mode — Creative Solutions
-                    </div>
-                </div>
-                <div class="reveal-content">
-                    <div class="reveal-body">
-                        <div class="code-block">
-                            <button class="copy-btn" onclick="copyCode(this)">⎘ Copy</button>
-                            <code><span class="prompt">Think like a dolphin — curious, playful and inventive.
-Generate creative solutions to this problem that most people wouldn't normally consider.
+                    <div class="chained-content">
+                        <div class="chained-body">
+                            <div class="code-block">
+                                <button class="copy-btn" onclick="copyCode(this)">⎘ Copy</button>
+                                <code><span class="comment"># Design Workflow or Automation</span>
 
-Problem: [YOUR PROBLEM HERE]</span></code>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Beaver Mode Prompt -->
-            <div class="reveal-card fade-in" id="beaver-prompt" style="display: none;">
-                <div class="reveal-header">
-                    <div class="reveal-title">
-                        <span class="reveal-icon"></span>
-                        🦫 Beaver Mode — Build Systems
-                    </div>
-                </div>
-                <div class="reveal-content">
-                    <div class="reveal-body">
-                        <div class="code-block">
-                            <button class="copy-btn" onclick="copyCode(this)">⎘ Copy</button>
-                            <code><span class="prompt">Think like a beaver building a dam.
+<span class="prompt">Step 1 (Beaver): Think like a beaver building a dam.
 Design a practical system that solves this problem step by step.
+Map out the core workflow components.
 
-Problem: [YOUR PROBLEM HERE]</span></code>
+Step 2 (Ant): Break into smallest possible steps.
+Each step should be a discrete action that can be automated.
+Consider error handling and edge cases.
+
+Step 3 (Owl): Review for gaps and inefficiencies.
+Validate the workflow makes logical sense.
+Identify potential bottlenecks.</span></code>
+                            </div>
+                            <div class="workflow-usecase">
+                                <div class="workflow-usecase-title">Best Use-Case</div>
+                                <p>Building automation scripts, designing approval workflows, or creating SOPs that need both implementation structure and quality review.</p>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            
-            <!-- Elephant Mode Prompt -->
-            <div class="reveal-card fade-in" id="elephant-prompt" style="display: none;">
-                <div class="reveal-header">
-                    <div class="reveal-title">
-                        <span class="reveal-icon"></span>
-                        🐘 Elephant Mode — Cross-Field Connections
+                
+                <div class="chained-example" data-chain="validate">
+                    <div class="chained-header" onclick="toggleChained(this)">
+                        <div class="chained-title">
+                            🦉 Owl → 🐘 Elephant → 🦅 Eagle
+                            <span class="level-badge expert">Validate Business Idea</span>
+                        </div>
+                        <span class="chained-arrow">▶</span>
                     </div>
-                </div>
-                <div class="reveal-content">
-                    <div class="reveal-body">
-                        <div class="code-block">
-                            <button class="copy-btn" onclick="copyCode(this)">⎘ Copy</button>
-                            <code><span class="prompt">Think like an elephant with a powerful memory.
-Connect this idea to insights from other fields such as
-psychology, economics, science or history.
+                    <div class="chained-content">
+                        <div class="chained-body">
+                            <div class="code-block">
+                                <button class="copy-btn" onclick="copyCode(this)">⎘ Copy</button>
+                                <code><span class="comment"># Validate Business Idea</span>
 
-Idea: [YOUR IDEA HERE]</span></code>
+<span class="prompt">Step 1 (Owl): Conduct deep analysis of this business idea.
+Examine market size, competition, and feasibility.
+Identify risks and assumptions that need testing.
+
+Step 2 (Elephant): Research similar successes and failures.
+Connect to case studies from other industries.
+What patterns can inform this idea?
+
+Step 3 (Eagle): Evaluate long-term strategic viability.
+Is this sustainable? Scalable? Defensible?
+What's the 10,000-foot view?</span></code>
+                            </div>
+                            <div class="workflow-usecase">
+                                <div class="workflow-usecase-title">Best Use-Case</div>
+                                <p>Validating startup ideas, evaluating new business ventures, or assessing strategic decisions before major investment.</p>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
             
             <div class="checklist">
-                <div class="checklist-header">
-                    ☑ Quality Checklist — Thinking Modes
-                </div>
+                <div class="checklist-header">☑ Quality Checklist — Thinking Modes</div>
                 <div class="checklist-items">
                     <div class="checklist-item">Mode selected based on task type</div>
-                    <div class="checklist-item">Prompt copied and customized for specific context</div>
-                    <div class="checklist-item">Output evaluated against original goal</div>
-                    <div class="checklist-item">Modes chained if complex (e.g., Eagle → Beaver → Ant)</div>
+                    <div class="checklist-item">For complex tasks, modes chained in logical order</div>
+                    <div class="checklist-item">Each mode serves specific purpose in chain</div>
+                    <div class="checklist-item">Output from one feeds into next</div>
                 </div>
             </div>
         </section>
@@ -1202,178 +1489,398 @@ Idea: [YOUR IDEA HERE]</span></code>
             <h2 class="section-title">Design Vocabulary</h2>
             
             <p class="fade-in" style="color: var(--silver); margin-bottom: 1.5rem;">
-                Use these exact terms in prompts to control visual output. Click to copy.
+                Use these terms in prompts to control visual output. Click tags to reveal descriptions.
             </p>
             
-            <div class="vocab-tags fade-in">
-                <span class="vocab-tag" onclick="copyVocab('glassmorphism')">glassmorphism</span>
-                <span class="vocab-tag" onclick="copyVocab('brutalist ui')">brutalist ui</span>
-                <span class="vocab-tag" onclick="copyVocab('kinetic typography')">kinetic typography</span>
-                <span class="vocab-tag" onclick="copyVocab('bento grid')">bento grid</span>
-                <span class="vocab-tag" onclick="copyVocab('micro-interactions')">micro-interactions</span>
-                <span class="vocab-tag" onclick="copyVocab('neon accent')">neon accent</span>
-                <span class="vocab-tag" onclick="copyVocab('liquid gradient')">liquid gradient</span>
-                <span class="vocab-tag" onclick="copyVocab('dark-mode native')">dark-mode native</span>
-                <span class="vocab-tag" onclick="copyVocab('skeleton loading')">skeleton loading</span>
-                <span class="vocab-tag" onclick="copyVocab('ambient motion')">ambient motion</span>
-                <span class="vocab-tag" onclick="copyVocab('progressive disclosure')">progressive disclosure</span>
-                <span class="vocab-tag" onclick="copyVocab('editorial layout')">editorial layout</span>
+            <div class="vocab-tags fade-in" id="vocab-tags-container">
+                <span class="vocab-tag" data-vocab="glassmorphism" onclick="showVocabDetail('glassmorphism')">glassmorphism</span>
+                <span class="vocab-tag" data-vocab="brutalist" onclick="showVocabDetail('brutalist')">brutalist ui</span>
+                <span class="vocab-tag" data-vocab="kinetic" onclick="showVocabDetail('kinetic')">kinetic typography</span>
+                <span class="vocab-tag" data-vocab="bento" onclick="showVocabDetail('bento')">bento grid</span>
+                <span class="vocab-tag" data-vocab="micro" onclick="showVocabDetail('micro')">micro-interactions</span>
+                <span class="vocab-tag" data-vocab="neon" onclick="showVocabDetail('neon')">neon accent</span>
+                <span class="vocab-tag" data-vocab="liquid" onclick="showVocabDetail('liquid')">liquid gradient</span>
+                <span class="vocab-tag" data-vocab="darkmode" onclick="showVocabDetail('darkmode')">dark-mode native</span>
+                <span class="vocab-tag" data-vocab="skeleton" onclick="showVocabDetail('skeleton')">skeleton loading</span>
+                <span class="vocab-tag" data-vocab="ambient" onclick="showVocabDetail('ambient')">ambient motion</span>
+                <span class="vocab-tag" data-vocab="progressive" onclick="showVocabDetail('progressive')">progressive disclosure</span>
+                <span class="vocab-tag" data-vocab="editorial" onclick="showVocabDetail('editorial')">editorial layout</span>
             </div>
             
-            <div class="reveal-card fade-in" onclick="this.classList.toggle('active')">
-                <div class="reveal-header">
-                    <div class="reveal-title">
-                        <span class="reveal-icon"></span>
-                        <span class="level-badge intermediate">Intermediate</span>
-                        Full Vocabulary Reference
-                    </div>
-                </div>
-                <div class="reveal-content">
-                    <div class="reveal-body">
-                        <div class="code-block">
-                            <button class="copy-btn" onclick="copyCode(this)">⎘ Copy</button>
-                            <code><span class="comment"># Design Vocabulary Reference</span>
-
-<span class="keyword">glassmorphism</span>     - Frosted glass panels, translucent backdrop
-<span class="keyword">brutalist ui</span>     - Raw, oversized, high-contrast, intentionally rough
-<span class="keyword">kinetic typography</span> - Text animates, morphs, reacts to scroll
-<span class="keyword">bento grid</span>       - Apple-style asymmetric card mosaic
-<span class="keyword">micro-interactions</span> - Tiny animations on hover, click, scroll
-<span class="keyword">neon accent</span>      - Single bright color pop against dark
-<span class="keyword">liquid gradient</span>   - Smooth, animated, shifting colors
-<span class="keyword">dark-mode native</span>   - Designed for dark first, light second
-<span class="keyword">skeleton loading</span>   - Placeholder shimmer before content
-<span class="keyword">ambient motion</span>     - Subtle, looping background animation</code>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <!-- Vocabulary Detail Container -->
+            <div id="vocab-detail-container"></div>
             
-            <div class="checklist">
-                <div class="checklist-header">
-                    ☑ Quality Checklist — Vocabulary
+            <!-- Design Combos Section -->
+            <h3 style="font-family: var(--font-mono); font-size: 1rem; color: var(--cyan); margin: 3rem 0 1.5rem; text-transform: uppercase; letter-spacing: 0.1em;">
+                Ultra-Modern Gen-Z Design Combos
+            </h3>
+            
+            <div class="combo-grid">
+                <div class="combo-card" data-combo="glass-bento" onclick="toggleCombo(this)">
+                    <div class="combo-title">🫧 Glass + Bento</div>
+                    <div class="combo-subtitle">Best for: Dashboard interfaces, data visualization</div>
+                    <div class="combo-elements">
+                        <span class="combo-element">glassmorphism</span>
+                        <span class="combo-element">bento grid</span>
+                        <span class="combo-element">dark-mode native</span>
+                    </div>
+                    <div class="combo-psychology">
+                        <strong>Psychology:</strong> Creates depth perception and hierarchy while maintaining information density. Glass effects reduce visual weight while bento grids organize content into scannable chunks.
+                    </div>
                 </div>
-                <div class="checklist-items">
-                    <div class="checklist-item">At least 3 aesthetic keywords used</div>
-                    <div class="checklist-item">Vocabulary matches target platform</div>
-                    <div class="checklist-item">Consistent design language throughout</div>
+                
+                <div class="combo-card" data-combo="brutal-neon" onclick="toggleCombo(this)">
+                    <div class="combo-title">💥 Brutal + Neon</div>
+                    <div class="combo-subtitle">Best for: Landing pages, bold brands</div>
+                    <div class="combo-elements">
+                        <span class="combo-element">brutalist ui</span>
+                        <span class="combo-element">neon accent</span>
+                        <span class="combo-element">kinetic typography</span>
+                    </div>
+                    <div class="combo-psychology">
+                        <strong>Psychology:</strong> Creates urgency and attention through high contrast. Brutalism cuts through noise while neon guides focus to key elements.
+                    </div>
+                </div>
+                
+                <div class="combo-card" data-combo="liquid-ambient" onclick="toggleCombo(this)">
+                    <div class="combo-title">🌊 Liquid + Ambient</div>
+                    <div class="combo-subtitle">Best for: Hero sections, immersive experiences</div>
+                    <div class="combo-elements">
+                        <span class="combo-element">liquid gradient</span>
+                        <span class="combo-element">ambient motion</span>
+                        <span class="combo-element">dark-mode native</span>
+                    </div>
+                    <div class="combo-psychology">
+                        <strong>Psychology:</strong> Evokes emotion and flow. Liquid gradients create organic feel while ambient motion keeps the interface alive without overwhelming.
+                    </div>
+                </div>
+                
+                <div class="combo-card" data-combo="editorial-bento" onclick="toggleCombo(this)">
+                    <div class="combo-title">📰 Editorial + Bento</div>
+                    <div class="combo-subtitle">Best for: Content platforms, blogs, portfolios</div>
+                    <div class="combo-elements">
+                        <span class="combo-element">editorial layout</span>
+                        <span class="combo-element">bento grid</span>
+                        <span class="combo-element">progressive disclosure</span>
+                    </div>
+                    <div class="combo-psychology">
+                        <strong>Psychology:</strong> Combines editorial authority with modern organization. Creates content hierarchy while maintaining visual interest across the page.
+                    </div>
+                </div>
+                
+                <div class="combo-card" data-combo="micro-skeleton" onclick="toggleCombo(this)">
+                    <div class="combo-title">✨ Micro + Skeleton</div>
+                    <div class="combo-subtitle">Best for: Apps, data-heavy interfaces</div>
+                    <div class="combo-elements">
+                        <span class="combo-element">micro-interactions</span>
+                        <span class="combo-element">skeleton loading</span>
+                        <span class="combo-element">dark-mode native</span>
+                    </div>
+                    <div class="combo-psychology">
+                        <strong>Psychology:</strong> Reduces perceived wait time and keeps users engaged. Micro-interactions provide feedback while skeletons maintain layout stability.
+                    </div>
+                </div>
+                
+                <div class="combo-card" data-combo="full-immersive" onclick="toggleCombo(this)">
+                    <div class="combo-title">🚀 Full Immersive</div>
+                    <div class="combo-subtitle">Best for: Marketing sites, product launches</div>
+                    <div class="combo-elements">
+                        <span class="combo-element">kinetic typography</span>
+                        <span class="combo-element">liquid gradient</span>
+                        <span class="combo-element">micro-interactions</span>
+                        <span class="combo-element">ambient motion</span>
+                    </div>
+                    <div class="combo-psychology">
+                        <strong>Psychology:</strong> Maximum engagement through sensory richness. Creates memorable experiences that differentiate brands in competitive markets.
+                    </div>
                 </div>
             </div>
         </section>
         
-        <!-- Templates Section -->
+        <!-- Typography Section -->
+        <section id="typography">
+            <span class="section-label">05 // Typography</span>
+            <h2 class="section-title">Ultra-Modern Gen-Z Typography Combos</h2>
+            
+            <div class="typo-combo" data-typo="space-syne" onclick="toggleTypo(this)">
+                <div class="typo-preview" style="font-family: 'Space Grotesk', sans-serif;">Space Grotesk</div>
+                <div class="typo-name">Display: Space Grotesk + Mono: JetBrains Mono</div>
+                <div class="typo-use">Best for: Tech startups, developer tools, modern SaaS</div>
+            </div>
+            
+            <div class="typo-combo" data-typo="syne-bold" onclick="toggleTypo(this)">
+                <div class="typo-preview" style="font-family: 'Syne', sans-serif;">Syne Bold</div>
+                <div class="typo-name">Display: Syne + Mono: JetBrains Mono</div>
+                <div class="typo-use">Best for: Creative agencies, art portfolios, bold brands</div>
+            </div>
+            
+            <div class="typo-combo" data-typo="clash-display" onclick="toggleTypo(this)">
+                <div class="typo-preview" style="font-family: 'Clash Display', sans-serif;">Clash Display</div>
+                <div class="typo-name">Display: Clash Display + Mono: Space Mono</div>
+                <div class="typo-use">Best for: Fashion, luxury brands, premium products</div>
+            </div>
+            
+            <div class="typo-combo" data-typo="inter-tight" onclick="toggleTypo(this)">
+                <div class="typo-preview" style="font-family: 'Inter Tight', sans-serif; letter-spacing: -0.03em;">Inter Tight</div>
+                <div class="typo-name">Display: Inter Tight + Mono: JetBrains Mono</div>
+                <div class="typo-use">Best for: Dashboards, enterprise apps, content platforms</div>
+            </div>
+            
+            <h3 style="font-family: var(--font-mono); font-size: 1rem; color: var(--cyan); margin: 3rem 0 1.5rem; text-transform: uppercase; letter-spacing: 0.1em;">
+                Infographic Typography Combos
+            </h3>
+            
+            <div class="combo-grid">
+                <div class="combo-card">
+                    <div class="combo-title">📊 Data Viz</div>
+                    <div class="combo-subtitle">Best for: Charts, infographics, reports</div>
+                    <div class="combo-elements">
+                        <span class="combo-element">Space Grotesk (headers)</span>
+                        <span class="combo-element">Inter (body)</span>
+                        <span class="combo-element">JetBrains Mono (numbers)</span>
+                    </div>
+                </div>
+                
+                <div class="combo-card">
+                    <div class="combo-title">🎨 Creative</div>
+                    <div class="combo-subtitle">Best for: Brand infographics, posters</div>
+                    <div class="combo-elements">
+                        <span class="combo-element">Syne (display)</span>
+                        <span class="combo-element">Space Grotesk (body)</span>
+                        <span class="combo-element">Clash Display (accent)</span>
+                    </div>
+                </div>
+                
+                <div class="combo-card">
+                    <div class="combo-title">📱 Mobile</div>
+                    <div class="combo-subtitle">Best for: Social media graphics</div>
+                    <div class="combo-elements">
+                        <span class="combo-element">Inter Tight (headlines)</span>
+                        <span class="combo-element">Inter (body)</span>
+                        <span class="combo-element">SF Pro (UI)</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Prompt Templates Section -->
         <section id="templates">
-            <span class="section-label">05 // Ready to Use</span>
+            <span class="section-label">06 // Ready to Use</span>
             <h2 class="section-title">Prompt Templates</h2>
             
             <div class="template-grid">
-                <div class="template-card" onclick="copyTemplate('webapp')">
+                <div class="template-card" data-template="webapp" onclick="toggleTemplate(this)">
                     <h4><span class="template-badge">Web</span> Web App Generator</h4>
                     <p>Generate complete Next.js + Tailwind web applications</p>
                 </div>
-                <div class="template-card" onclick="copyTemplate('mobile')">
+                
+                <div class="template-card" data-template="mobile" onclick="toggleTemplate(this)">
                     <h4><span class="template-badge">Mobile</span> Mobile UI</h4>
                     <p>React Native / Expo mobile app components</p>
                 </div>
-                <div class="template-card" onclick="copyTemplate('brand')">
+                
+                <div class="template-card" data-template="brand" onclick="toggleTemplate(this)">
                     <h4><span class="template-badge">Brand</span> Brand System</h4>
                     <p>Complete brand identity with colors, typography, motion</p>
                 </div>
-                <div class="template-card" onclick="copyTemplate('landing')">
+                
+                <div class="template-card" data-template="landing" onclick="toggleTemplate(this)">
                     <h4><span class="template-badge">Mkt</span> Landing Page</h4>
                     <p>High-conversion landing page with CTAs</p>
                 </div>
-                <div class="template-card" onclick="copyTemplate('dashboard')">
+                
+                <div class="template-card" data-template="dashboard" onclick="toggleTemplate(this)">
                     <h4><span class="template-badge">Data</span> Dashboard</h4>
                     <p>Analytics dashboard with charts and data viz</p>
                 </div>
-                <div class="template-card" onclick="copyTemplate('api')">
+                
+                <div class="template-card" data-template="api" onclick="toggleTemplate(this)">
                     <h4><span class="template-badge">Dev</span> API Design</h4>
                     <p>REST/GraphQL API specification and documentation</p>
                 </div>
             </div>
+            
+            <!-- Template Prompt Container -->
+            <div id="template-prompts"></div>
         </section>
         
         <!-- Workflows Section -->
         <section id="workflows">
-            <span class="section-label">06 // Common Patterns</span>
+            <span class="section-label">07 // Common Patterns</span>
             <h2 class="section-title">Common Workflows</h2>
             
-            <div class="reveal-card fade-in" onclick="this.classList.toggle('active')">
-                <div class="reveal-header">
-                    <div class="reveal-title">
-                        <span class="reveal-icon"></span>
-                        <span class="level-badge advanced">Advanced</span>
-                        Build AI Content System
+            <div class="workflow-grid">
+                <div class="workflow-card" data-workflow="content-system">
+                    <div class="workflow-header" onclick="toggleWorkflow(this)">
+                        <div class="workflow-title">
+                            🦅 Eagle → 🦫 Beaver → 🐜 Ant
+                        </div>
+                        <div class="workflow-chain">
+                            <span class="level-badge advanced">Build AI Content System</span>
+                            <span class="workflow-chain-arrow">▶</span>
+                        </div>
                     </div>
-                </div>
-                <div class="reveal-content">
-                    <div class="reveal-body">
-                        <p style="color: var(--silver); margin-bottom: 1rem;">
-                            Chain animal modes together for complex projects:
-                        </p>
-                        <div class="code-block">
-                            <button class="copy-btn" onclick="copyCode(this)">⎘ Copy</span></button>
-                            <code><span class="comment"># Mode Chain: 🦅 Eagle → 🦫 Beaver → 🐜 Ant</span>
-
-<span class="prompt">Step 1 (Eagle): Think like an eagle flying high above the landscape.
-Explain the long-term strategy for building an AI content system.
-
-Step 2 (Beaver): Think like a beaver building a dam.
-Design the system architecture step by step.
-
-Step 3 (Ant): Think like an ant.
-Break this into the smallest possible implementation steps.</span></code>
+                    <div class="workflow-content">
+                        <div class="workflow-body">
+                            <div class="code-block">
+                                <button class="copy-btn" onclick="copyCode(this)">⎘ Copy</button>
+                                <code>Step 1 (Eagle): Strategic planning for content system
+Step 2 (Beaver): Architecture design
+Step 3 (Ant): Implementation breakdown</code>
+                            </div>
+                            <div class="workflow-usecase">
+                                <div class="workflow-usecase-title">Best Use-Case</div>
+                                <p>Building automated content pipelines, AI blogs, content generation systems requiring strategic planning → systematic implementation.</p>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            
-            <div class="reveal-card fade-in" onclick="this.classList.toggle('active')">
-                <div class="reveal-header">
-                    <div class="reveal-title">
-                        <span class="reveal-icon"></span>
-                        <span class="level-badge advanced">Advanced</span>
-                        Solve Complex Problem
+                
+                <div class="workflow-card" data-workflow="complex-problem">
+                    <div class="workflow-header" onclick="toggleWorkflow(this)">
+                        <div class="workflow-title">
+                            🦉 Owl → 🐬 Dolphin → 🐘 Elephant
+                        </div>
+                        <div class="workflow-chain">
+                            <span class="level-badge advanced">Solve Complex Problem</span>
+                            <span class="workflow-chain-arrow">▶</span>
+                        </div>
+                    </div>
+                    <div class="workflow-content">
+                        <div class="workflow-body">
+                            <div class="code-block">
+                                <button class="copy-btn" onclick="copyCode(this)">⎘ Copy</button>
+                                <code>Step 1 (Owl): Deep analytical examination
+Step 2 (Dolphin): Creative solution generation
+Step 3 (Elephant): Cross-field insights</code>
+                            </div>
+                            <div class="workflow-usecase">
+                                <div class="workflow-usecase-title">Best Use-Case</div>
+                                <p>Innovative product design, breakthrough features, solving entrenched problems requiring analytical depth + creative thinking.</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="reveal-content">
-                    <div class="reveal-body">
-                        <p style="color: var(--silver); margin-bottom: 1rem;">
-                            Combine analysis and creativity modes:
-                        </p>
-                        <div class="code-block">
-                            <button class="copy-btn" onclick="copyCode(this)">⎘ Copy</span></button>
-                            <code><span class="comment"># Mode Chain: 🦉 Owl → 🐬 Dolphin → 🐘 Elephant</span>
-
-<span class="prompt">Step 1 (Owl): Think like an owl — slow, observant and analytical.
-Examine this problem from multiple perspectives.
-
-Step 2 (Dolphin): Think like a dolphin — curious, playful and inventive.
-Generate creative solutions.
-
-Step 3 (Elephant): Think like an elephant with a powerful memory.
-Connect solutions to insights from other fields.</span></code>
+                
+                <div class="workflow-card" data-workflow="brainstorm">
+                    <div class="workflow-header" onclick="toggleWorkflow(this)">
+                        <div class="workflow-title">
+                            🐇 Rabbit → 🦅 Eagle → 🐜 Ant
+                        </div>
+                        <div class="workflow-chain">
+                            <span class="level-badge intermediate">Brainstorm Product</span>
+                            <span class="workflow-chain-arrow">▶</span>
+                        </div>
+                    </div>
+                    <div class="workflow-content">
+                        <div class="workflow-body">
+                            <div class="code-block">
+                                <button class="copy-btn" onclick="copyCode(this)">⎘ Copy</button>
+                                <code>Step 1 (Rabbit): Generate 10+ variations
+Step 2 (Eagle): Evaluate potential
+Step 3 (Ant): Actionable next steps</code>
+                            </div>
+                            <div class="workflow-usecase">
+                                <div class="workflow-usecase-title">Best Use-Case</div>
+                                <p>New product ideation, marketing channel selection, business model exploration before committing.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="workflow-card" data-workflow="workflow-design">
+                    <div class="workflow-header" onclick="toggleWorkflow(this)">
+                        <div class="workflow-title">
+                            🦫 Beaver → 🐜 Ant → 🦉 Owl
+                        </div>
+                        <div class="workflow-chain">
+                            <span class="level-badge intermediate">Design Workflow</span>
+                            <span class="workflow-chain-arrow">▶</span>
+                        </div>
+                    </div>
+                    <div class="workflow-content">
+                        <div class="workflow-body">
+                            <div class="code-block">
+                                <button class="copy-btn" onclick="copyCode(this)">⎘ Copy</button>
+                                <code>Step 1 (Beaver): System architecture
+Step 2 (Ant): Micro-step breakdown
+Step 3 (Owl): Review for gaps</code>
+                            </div>
+                            <div class="workflow-usecase">
+                                <div class="workflow-usecase-title">Best Use-Case</div>
+                                <p>Automation scripts, approval workflows, SOPs needing implementation + quality review.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="workflow-card" data-workflow="validate">
+                    <div class="workflow-header" onclick="toggleWorkflow(this)">
+                        <div class="workflow-title">
+                            🦉 Owl → 🐘 Elephant → 🦅 Eagle
+                        </div>
+                        <div class="workflow-chain">
+                            <span class="level-badge expert">Validate Business</span>
+                            <span class="workflow-chain-arrow">▶</span>
+                        </div>
+                    </div>
+                    <div class="workflow-content">
+                        <div class="workflow-body">
+                            <div class="code-block">
+                                <button class="copy-btn" onclick="copyCode(this)">⎘ Copy</button>
+                                <code>Step 1 (Owl): Feasibility analysis
+Step 2 (Elephant): Research patterns
+Step 3 (Eagle): Strategic evaluation</code>
+                            </div>
+                            <div class="workflow-usecase">
+                                <div class="workflow-usecase-title">Best Use-Case</div>
+                                <p>Startup validation, business venture assessment, strategic decisions before major investment.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="workflow-card" data-workflow="viral-content">
+                    <div class="workflow-header" onclick="toggleWorkflow(this)">
+                        <div class="workflow-title">
+                            🐇 Rabbit → 🐬 Dolphin → 🦅 Eagle
+                        </div>
+                        <div class="workflow-chain">
+                            <span class="level-badge expert">Generate Viral Content</span>
+                            <span class="workflow-chain-arrow">▶</span>
+                        </div>
+                    </div>
+                    <div class="workflow-content">
+                        <div class="workflow-body">
+                            <div class="code-block">
+                                <button class="copy-btn" onclick="copyCode(this)">⎘ Copy</button>
+                                <code>Step 1 (Rabbit): Multiply content angles
+Step 2 (Dolphin): Creative hook generation
+Step 3 (Eagle): Strategic distribution</code>
+                            </div>
+                            <div class="workflow-usecase">
+                                <div class="workflow-usecase-title">Best Use-Case</div>
+                                <p>Social media viral content, marketing campaigns, content that cuts through attention economy.</p>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
             
             <div class="checklist">
-                <div class="checklist-header">
-                    ☑ Quality Checklist — Workflows
-                </div>
+                <div class="checklist-header">☑ Quality Checklist — Workflows</div>
                 <div class="checklist-items">
-                    <div class="checklist-item">Modes chained in logical order</div>
+                    <div class="checklist-item">Modes chained in logical order (analysis → creation → execution)</div>
                     <div class="checklist-item">Each mode serves specific purpose</div>
                     <div class="checklist-item">Output from one feeds into next</div>
+                    <div class="checklist-item">Selected chain matches use-case</div>
                 </div>
             </div>
         </section>
         
         <!-- Resources Section -->
         <section id="resources">
-            <span class="section-label">07 // References</span>
+            <span class="section-label">08 // References</span>
             <h2 class="section-title">Resources & Links</h2>
             
             <div class="links-grid">
@@ -1396,10 +1903,6 @@ Connect solutions to insights from other fields.</span></code>
                 <a href="https://vercel.com" class="link-card" target="_blank">
                     <h4>▲ Vercel</h4>
                     <p>Free hosting for deployments</p>
-                </a>
-                <a href="https://github.com/marktantongco" class="link-card" target="_blank">
-                    <h4>👤 Author Profile</h4>
-                    <p>More projects & repositories</p>
                 </a>
             </div>
             
@@ -1429,7 +1932,7 @@ Connect solutions to insights from other fields.</span></code>
     </main>
     
     <script>
-        // Navigation scroll effect
+        // ==================== NAVIGATION ====================
         const nav = document.getElementById('nav');
         const sections = document.querySelectorAll('section');
         const scrollDots = document.querySelectorAll('.scroll-dot');
@@ -1441,7 +1944,6 @@ Connect solutions to insights from other fields.</span></code>
                 nav.classList.remove('scrolled');
             }
             
-            // Update active section
             let current = '';
             sections.forEach(section => {
                 const sectionTop = section.offsetTop;
@@ -1457,7 +1959,6 @@ Connect solutions to insights from other fields.</span></code>
                 }
             });
             
-            // Update nav links
             document.querySelectorAll('.nav-links a').forEach(link => {
                 link.classList.remove('active');
                 if (link.getAttribute('href') === '#' + current) {
@@ -1466,7 +1967,6 @@ Connect solutions to insights from other fields.</span></code>
             });
         });
         
-        // Scroll to section on dot click
         scrollDots.forEach(dot => {
             dot.addEventListener('click', () => {
                 const section = document.getElementById(dot.dataset.section);
@@ -1474,34 +1974,485 @@ Connect solutions to insights from other fields.</span></code>
             });
         });
         
-        // Reveal card toggle
-        document.querySelectorAll('.reveal-card').forEach(card => {
-            card.addEventListener('click', (e) => {
-                if (!e.target.classList.contains('copy-btn')) {
-                    card.classList.toggle('active');
-                }
-            });
-        });
-        
-        // Animal mode toggle
-        function toggleMode(card, mode) {
-            document.querySelectorAll('.mode-card').forEach(c => c.classList.remove('active'));
-            card.classList.add('active');
-            
-            // Hide all prompts
-            document.querySelectorAll('[id$="-prompt"]').forEach(p => p.style.display = 'none');
-            document.querySelectorAll('.reveal-card').forEach(c => c.classList.remove('active'));
-            
-            // Show selected prompt
-            const prompt = document.getElementById(mode + '-prompt');
-            if (prompt) {
-                prompt.style.display = 'block';
-                prompt.classList.add('active');
-                prompt.scrollIntoView({ behavior: 'smooth', block: 'center' });
-            }
+        // ==================== REVEAL CARDS ====================
+        function toggleReveal(header) {
+            const card = header.closest('.reveal-card');
+            card.classList.toggle('active');
         }
         
-        // Copy code function
+        // ==================== ANIMAL MODES ====================
+        const modePrompts = {
+            rabbit: {
+                name: 'Rabbit Mode',
+                emoji: '🐇',
+                desc: 'Multiply Ideas',
+                prompt: `Take this idea and multiply it into 10 different variations.
+For each variation: change the angle, change the audience, change the format.
+Present the results as a list of distinct ideas.
+
+Idea: [YOUR IDEA HERE]`
+            },
+            owl: {
+                name: 'Owl Mode',
+                emoji: '🦉',
+                desc: 'Deep Analysis',
+                prompt: `Think like an owl — slow, observant and analytical.
+Examine this problem from multiple perspectives and identify
+the hidden factors most people overlook.
+
+Problem: [YOUR PROBLEM HERE]`
+            },
+            ant: {
+                name: 'Ant Mode',
+                emoji: '🐜',
+                desc: 'Break Into Steps',
+                prompt: `Think like an ant.
+Break this goal into the smallest possible steps someone could realistically complete.
+
+Goal: [YOUR GOAL HERE]`
+            },
+            eagle: {
+                name: 'Eagle Mode',
+                emoji: '🦅',
+                desc: 'Big Picture Strategy',
+                prompt: `Think like an eagle flying high above the landscape.
+Explain the long-term strategy behind this idea and how the pieces connect.
+
+Concept: [YOUR CONCEPT HERE]`
+            },
+            dolphin: {
+                name: 'Dolphin Mode',
+                emoji: '🐬',
+                desc: 'Creative Solutions',
+                prompt: `Think like a dolphin — curious, playful and inventive.
+Generate creative solutions to this problem that most people wouldn't normally consider.
+
+Problem: [YOUR PROBLEM HERE]`
+            },
+            beaver: {
+                name: 'Beaver Mode',
+                emoji: '🦫',
+                desc: 'Build Systems',
+                prompt: `Think like a beaver building a dam.
+Design a practical system that solves this problem step by step.
+
+Problem: [YOUR PROBLEM HERE]`
+            },
+            elephant: {
+                name: 'Elephant Mode',
+                emoji: '🐘',
+                desc: 'Cross-Field Connections',
+                prompt: `Think like an elephant with a powerful memory.
+Connect this idea to insights from other fields such as
+psychology, economics, science or history.
+
+Idea: [YOUR IDEA HERE]`
+            }
+        };
+        
+        function toggleMode(mode) {
+            const container = document.getElementById('mode-prompts');
+            const prompt = modePrompts[mode];
+            
+            // Remove active from all mode cards
+            document.querySelectorAll('.mode-card').forEach(c => c.classList.remove('active'));
+            document.querySelector(`[data-mode="${mode}"]`).classList.add('active');
+            
+            // Check if prompt already exists
+            let promptEl = document.getElementById(`mode-prompt-${mode}`);
+            if (promptEl) {
+                promptEl.remove();
+            }
+            
+            // Create new prompt element
+            promptEl = document.createElement('div');
+            promptEl.id = `mode-prompt-${mode}`;
+            promptEl.className = 'reveal-card fade-in active';
+            promptEl.style.marginTop = '1.5rem';
+            promptEl.innerHTML = `
+                <div class="reveal-header">
+                    <div class="reveal-title">
+                        <span class="reveal-icon"></span>
+                        ${prompt.emoji} ${prompt.name} — ${prompt.desc}
+                    </div>
+                </div>
+                <div class="reveal-content" style="max-height: 1000px;">
+                    <div class="reveal-body">
+                        <div class="code-block">
+                            <button class="copy-btn" onclick="copyCode(this)">⎘ Copy</button>
+                            <code>${prompt.prompt}</code>
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            container.appendChild(promptEl);
+            promptEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+        
+        // ==================== CHAINED EXAMPLES ====================
+        function toggleChained(header) {
+            const example = header.closest('.chained-example');
+            example.classList.toggle('active');
+            const arrow = header.querySelector('.chained-arrow');
+            arrow.textContent = example.classList.contains('active') ? '▼' : '▶';
+        }
+        
+        // ==================== VOCABULARY ====================
+        const vocabDetails = {
+            glassmorphism: {
+                term: 'glassmorphism',
+                desc: 'Frosted glass panels with translucent backdrop and blur',
+                useCase: 'Dashboard interfaces, modal overlays, card containers'
+            },
+            brutalist: {
+                term: 'brutalist ui',
+                desc: 'Raw, oversized typography with high-contrast intentionally rough',
+                useCase: 'Landing pages, bold brands, attention-grabbing CTAs'
+            },
+            kinetic: {
+                term: 'kinetic typography',
+                desc: 'Text that animates, morphs, and reacts to scroll',
+                useCase: 'Hero sections, brand storytelling, promotional content'
+            },
+            bento: {
+                term: 'bento grid',
+                desc: 'Apple-style asymmetric card mosaic layout',
+                useCase: 'Feature grids, pricing tables, dashboard widgets'
+            },
+            micro: {
+                term: 'micro-interactions',
+                desc: 'Tiny animations on hover, click, scroll, focus',
+                useCase: 'Button states, form validation, loading feedback'
+            },
+            neon: {
+                term: 'neon accent',
+                desc: 'Single bright color pop against dark background',
+                useCase: 'CTAs, highlights, active states'
+            },
+            liquid: {
+                term: 'liquid gradient',
+                desc: 'Smooth, animated, shifting background color blends',
+                useCase: 'Hero backgrounds, immersive experiences'
+            },
+            darkmode: {
+                term: 'dark-mode native',
+                desc: 'Designed for dark backgrounds first, light secondary',
+                useCase: 'Developer tools, media apps, late-night usage'
+            },
+            skeleton: {
+                term: 'skeleton loading',
+                desc: 'Placeholder shimmer before real content appears',
+                useCase: 'Data-heavy pages, infinite scroll, slow APIs'
+            },
+            ambient: {
+                term: 'ambient motion',
+                desc: 'Subtle, looping background animation',
+                useCase: 'Hero sections, waiting states, brand atmosphere'
+            },
+            progressive: {
+                term: 'progressive disclosure',
+                desc: 'Reveal complexity only when user needs it',
+                useCase: 'Complex forms, settings panels, onboarding'
+            },
+            editorial: {
+                term: 'editorial layout',
+                desc: 'Magazine-style with large typography and asymmetric grids',
+                useCase: 'Blogs, portfolios, content platforms'
+            }
+        };
+        
+        function showVocabDetail(vocab) {
+            const container = document.getElementById('vocab-detail-container');
+            const detail = vocabDetails[vocab];
+            
+            // Update active state
+            document.querySelectorAll('.vocab-tag').forEach(t => t.classList.remove('active'));
+            document.querySelector(`[data-vocab="${vocab}"]`).classList.add('active');
+            
+            // Check if detail already exists
+            let detailEl = document.getElementById(`vocab-detail-${vocab}`);
+            if (detailEl) {
+                detailEl.remove();
+            }
+            
+            // Create detail element
+            detailEl = document.createElement('div');
+            detailEl.id = `vocab-detail-${vocab}`;
+            detailEl.className = 'reveal-card fade-in active';
+            detailEl.style.marginTop = '1rem';
+            detailEl.innerHTML = `
+                <div class="reveal-header">
+                    <div class="reveal-title">
+                        <span class="reveal-icon"></span>
+                        ${detail.term}
+                    </div>
+                </div>
+                <div class="reveal-content" style="max-height: 500px;">
+                    <div class="reveal-body">
+                        <p style="color: var(--silver); margin-bottom: 1rem;">${detail.desc}</p>
+                        <div class="workflow-usecase">
+                            <div class="workflow-usecase-title">Best Use-Case</div>
+                            <p>${detail.useCase}</p>
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            container.appendChild(detailEl);
+            detailEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+        
+        // ==================== COMBOS ====================
+        function toggleCombo(card) {
+            card.classList.toggle('active');
+        }
+        
+        // ==================== TYPOGRAPHY ====================
+        function toggleTypo(card) {
+            card.classList.toggle('active');
+        }
+        
+        // ==================== TEMPLATES ====================
+        const templatePrompts = {
+            webapp: {
+                name: 'Web App Generator',
+                badge: 'Web',
+                prompt: `Generate a complete Next.js + Tailwind web application:
+
+ROLE: Senior full-stack developer + product designer
+
+CONTEXT
+Product: [NAME]
+Platform: Web
+Audience: [TARGET USERS]
+
+OBJECTIVE
+Create a fully functional [TYPE] web application with:
+- Modern UI/UX with Gen-Z aesthetics
+- Responsive design
+- Interactive components
+
+TECHNICAL STACK
+- Framework: Next.js (App Router)
+- Styling: Tailwind CSS
+- Animation: Framer Motion
+- Components: shadcn/ui
+
+AESTHETIC
+- Dark-mode native
+- Glassmorphism elements
+- Kinetic typography
+- Micro-interactions
+
+OUTPUT
+Generate:
+1. Project folder structure
+2. All source code files
+3. Installation instructions`
+            },
+            mobile: {
+                name: 'Mobile UI',
+                badge: 'Mobile',
+                prompt: `Generate React Native / Expo mobile components:
+
+ROLE: Senior mobile designer
+
+CONTEXT
+Product: [NAME]
+Platform: iOS & Android
+Audience: [TARGET USERS]
+
+OBJECTIVE
+Create mobile UI components with:
+- Mobile-first design
+- 44px minimum touch targets
+- Native feel
+
+TECHNICAL STACK
+- Framework: React Native / Expo
+- Navigation: React Navigation
+- Animation: Reanimated
+
+AESTHETIC
+- Dark-mode native
+- Smooth animations
+- Platform-specific patterns
+
+OUTPUT
+Generate:
+1. Component code
+2. Navigation structure
+3. Theme configuration`
+            },
+            brand: {
+                name: 'Brand System',
+                badge: 'Brand',
+                prompt: `Create a complete brand identity system:
+
+ROLE: Brand designer + strategist
+
+CONTEXT
+Brand: [NAME]
+Industry: [INDRY]
+Audience: [TARGET]
+
+OBJECTIVE
+Design a cohesive brand system including:
+
+COLOR PALETTE
+- Background: #0B0D10 (void black)
+- Accents: cyan #4DFFFF, violet #7B5CFF
+- Text: #FFFFFF, #A1A1AA
+
+TYPOGRAPHY
+- Display: Space Grotesk / Syne
+- Body: Inter
+- Mono: JetBrains Mono
+
+MOTION
+- Easing: cubic-bezier(0.16, 1, 0.3, 1)
+- Duration: micro 180ms, standard 320ms
+
+OUTPUT
+1. Color tokens
+2. Typography scale
+3. Component patterns
+4. Brand guidelines`
+            },
+            landing: {
+                name: 'Landing Page',
+                badge: 'Mkt',
+                prompt: `Create a high-conversion landing page:
+
+ROLE: Conversion optimization specialist + designer
+
+CONTEXT
+Product: [NAME]
+Goal: [CONVERSION GOAL]
+
+OBJECTIVE
+Design landing page sections:
+1. Hero with clear CTA
+2. Value proposition
+3. Social proof
+4. Features/Benefits
+5. Final CTA
+
+AESTHETIC
+- Brutalist + Neon accents
+- Kinetic typography
+- Micro-interactions
+
+OUTPUT
+1. Next.js + Tailwind code
+2. Responsive layout
+3. Animation code`
+            },
+            dashboard: {
+                name: 'Dashboard',
+                badge: 'Data',
+                prompt: `Design analytics dashboard:
+
+ROLE: Data visualization specialist
+
+CONTEXT
+Product: [NAME]
+Data: [DATA TYPES]
+
+OBJECTIVE
+Create dashboard with:
+- Real-time data visualization
+- Interactive charts
+- Responsive grid
+
+TECHNICAL STACK
+- Charts: Recharts / Tremor
+- Grid: CSS Grid
+- Theme: Dark mode
+
+AESTHETIC
+- Bento grid layout
+- Glassmorphism cards
+- Clear data hierarchy
+
+OUTPUT
+1. Dashboard components
+2. Chart configurations
+3. Layout code`
+            },
+            api: {
+                name: 'API Design',
+                badge: 'Dev',
+                prompt: `Design API specification:
+
+ROLE: API architect
+
+CONTEXT
+Product: [NAME]
+Type: REST / GraphQL
+
+OBJECTIVE
+Create API design with:
+- Endpoint definitions
+- Request/response schemas
+- Authentication
+
+OUTPUT
+1. OpenAPI/Swagger spec
+2. TypeScript types
+3. Documentation`
+            }
+        };
+        
+        function toggleTemplate(card) {
+            const template = card.dataset.template;
+            const templateData = templatePrompts[template];
+            const container = document.getElementById('template-prompts');
+            
+            // Update active state
+            document.querySelectorAll('.template-card').forEach(c => c.classList.remove('active'));
+            card.classList.add('active');
+            
+            // Check if prompt already exists
+            let promptEl = document.getElementById(`template-prompt-${template}`);
+            if (promptEl) {
+                promptEl.remove();
+            }
+            
+            // Create prompt element
+            promptEl = document.createElement('div');
+            promptEl.id = `template-prompt-${template}`;
+            promptEl.className = 'reveal-card fade-in active';
+            promptEl.style.marginTop = '1rem';
+            promptEl.innerHTML = `
+                <div class="reveal-header">
+                    <div class="reveal-title">
+                        <span class="reveal-icon"></span>
+                        ${templateData.name} Prompt
+                    </div>
+                </div>
+                <div class="reveal-content" style="max-height: 2000px;">
+                    <div class="reveal-body">
+                        <div class="code-block">
+                            <button class="copy-btn" onclick="copyCode(this)">⎘ Copy</button>
+                            <code>${templateData.prompt}</code>
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            container.appendChild(promptEl);
+            promptEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+        
+        // ==================== WORKFLOWS ====================
+        function toggleWorkflow(header) {
+            const card = header.closest('.workflow-card');
+            card.classList.toggle('active');
+        }
+        
+        // ==================== COPY CODE ====================
         function copyCode(btn) {
             const code = btn.parentElement.querySelector('code').innerText;
             navigator.clipboard.writeText(code).then(() => {
@@ -1514,38 +2465,8 @@ Connect solutions to insights from other fields.</span></code>
             });
         }
         
-        // Copy vocabulary tag
-        function copyVocab(tag) {
-            navigator.clipboard.writeText(tag).then(() => {
-                // Show feedback
-                const event = new CustomEvent('copyFeedback', { detail: tag });
-                window.dispatchEvent(event);
-            });
-        }
-        
-        // Copy template
-        function copyTemplate(type) {
-            const templates = {
-                role: 'You are a [senior role] with [years] years of experience.',
-                context: 'Product: [name]\nPlatform: [mobile/web]\nAudience: [who]',
-                objective: 'Objective: [clear success statement]\nSuccess criteria:\n- [criterion 1]\n- [criterion 2]',
-                constraints: 'Constraints:\n- Mobile-first\n- WCAG AA accessibility\n- 60fps animation budget',
-                webapp: 'Generate a complete Next.js + Tailwind web app with:\n- 8-layer architecture\n- Gen-Z UI aesthetic\n- Framer Motion animations',
-                mobile: 'Generate React Native / Expo mobile components:\n- Mobile-first design\n- 44px touch targets\n- Dark-mode native',
-                brand: 'Create brand system:\n- Color palette\n- Typography scale\n- Motion guidelines\n- Tone of voice',
-                landing: 'Create high-conversion landing page:\n- Hero section\n- Features\n- Social proof\n- CTA sections',
-                dashboard: 'Design analytics dashboard:\n- Charts and data viz\n- Responsive grid\n- Dark-mode native',
-                api: 'Design API specification:\n- REST/GraphQL endpoints\n- Request/response schemas\n- Authentication'
-            };
-            
-            navigator.clipboard.writeText(templates[type] || '').then(() => {
-                alert('Template copied to clipboard!');
-            });
-        }
-        
-        // Fade in animation on scroll
+        // ==================== FADE IN ====================
         const fadeElements = document.querySelectorAll('.fade-in');
-        
         const fadeObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -1556,7 +2477,7 @@ Connect solutions to insights from other fields.</span></code>
         
         fadeElements.forEach(el => fadeObserver.observe(el));
         
-        // Smooth scroll for nav links
+        // ==================== SMOOTH SCROLL ====================
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
                 e.preventDefault();
